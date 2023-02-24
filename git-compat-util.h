@@ -14,6 +14,8 @@
 #error "Required C99 support is in a test phase.  Please see git-compat-util.h for more details."
 #endif
 
+#undef int
+
 #ifdef USE_MSVC_CRTDBG
 /*
  * For these to work they must appear very early in each

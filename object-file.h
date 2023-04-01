@@ -4,6 +4,14 @@
 #include "git-zlib.h"
 #include "object.h"
 
+/*
+ * Set this to 0 to prevent oid_object_info_extended() from fetching missing
+ * blobs. This has a difference only if extensions.partialClone is set.
+ *
+ * Its default value is 1.
+ */
+extern int fetch_if_missing;
+
 #define HASH_WRITE_OBJECT 1
 #define HASH_FORMAT_CHECK 2
 #define HASH_RENORMALIZE  4

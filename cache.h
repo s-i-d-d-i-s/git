@@ -679,14 +679,6 @@ struct pack_entry {
 	struct packed_git *p;
 };
 
-/*
- * Set this to 0 to prevent oid_object_info_extended() from fetching missing
- * blobs. This has a difference only if extensions.partialClone is set.
- *
- * Its default value is 1.
- */
-extern int fetch_if_missing;
-
 /* Dumb servers support */
 int update_server_info(int);
 

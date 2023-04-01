@@ -3,7 +3,6 @@
 
 #include "git-compat-util.h"
 #include "strbuf.h"
-#include "git-zlib.h"
 #include "hashmap.h"
 #include "gettext.h"
 #include "string-list.h"

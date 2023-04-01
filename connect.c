@@ -1,5 +1,4 @@
 #include "git-compat-util.h"
-#include "git-compat-util.h"
 #include "config.h"
 #include "environment.h"
 #include "gettext.h"

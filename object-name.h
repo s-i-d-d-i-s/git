@@ -2,11 +2,25 @@
 #define OBJECT_NAME_H
 
 #include "object.h"
+#include "strbuf.h"
 
-struct object_context;
 struct object_id;
 struct repository;
-struct strbuf;
+
+struct object_context {
+	unsigned short mode;
+	/*
+	 * symlink_path is only used by get_tree_entry_follow_symlinks,
+	 * and only for symlinks that point outside the repository.
+	 */
+	struct strbuf symlink_path;
+	/*
+	 * If GET_OID_RECORD_PATH is set, this will record path (if any)
+	 * found when resolving the name. The caller is responsible for
+	 * releasing the memory.
+	 */
+	char *path;
+};
 
 /*
  * Return an abbreviated sha1 unique within this repository's object database.

@@ -637,21 +637,6 @@ extern int verify_ce_order;
 /* used when the code does not know or care what the default abbrev is */
 #define FALLBACK_DEFAULT_ABBREV 7
 
-struct object_context {
-	unsigned short mode;
-	/*
-	 * symlink_path is only used by get_tree_entry_follow_symlinks,
-	 * and only for symlinks that point outside the repository.
-	 */
-	struct strbuf symlink_path;
-	/*
-	 * If GET_OID_RECORD_PATH is set, this will record path (if any)
-	 * found when resolving the name. The caller is responsible for
-	 * releasing the memory.
-	 */
-	char *path;
-};
-
 int base_name_compare(const char *name1, size_t len1, int mode1,
 		      const char *name2, size_t len2, int mode2);
 int df_name_compare(const char *name1, size_t len1, int mode1,

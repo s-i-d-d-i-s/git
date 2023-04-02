@@ -122,6 +122,29 @@ static inline enum object_type object_type(unsigned int mode)
 		OBJ_BLOB;
 }
 
+#define ce_permissions(mode) (((mode) & 0100) ? 0755 : 0644)
+static inline unsigned int create_ce_mode(unsigned int mode)
+{
+	if (S_ISLNK(mode))
+		return S_IFLNK;
+	if (S_ISSPARSEDIR(mode))
+		return S_IFDIR;
+	if (S_ISDIR(mode) || S_ISGITLINK(mode))
+		return S_IFGITLINK;
+	return S_IFREG | ce_permissions(mode);
+}
+
+static inline unsigned int canon_mode(unsigned int mode)
+{
+	if (S_ISREG(mode))
+		return S_IFREG | ce_permissions(mode);
+	if (S_ISLNK(mode))
+		return S_IFLNK;
+	if (S_ISDIR(mode))
+		return S_IFDIR;
+	return S_IFGITLINK;
+}
+
 /*
  * The object type is stored in 3 bits.
  */

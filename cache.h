@@ -178,17 +178,6 @@ static inline unsigned create_ce_flags(unsigned stage)
 #define ce_mark_uptodate(ce) ((ce)->ce_flags |= CE_UPTODATE)
 #define ce_intent_to_add(ce) ((ce)->ce_flags & CE_INTENT_TO_ADD)
 
-#define ce_permissions(mode) (((mode) & 0100) ? 0755 : 0644)
-static inline unsigned int create_ce_mode(unsigned int mode)
-{
-	if (S_ISLNK(mode))
-		return S_IFLNK;
-	if (S_ISSPARSEDIR(mode))
-		return S_IFDIR;
-	if (S_ISDIR(mode) || S_ISGITLINK(mode))
-		return S_IFGITLINK;
-	return S_IFREG | ce_permissions(mode);
-}
 static inline unsigned int ce_mode_from_stat(const struct cache_entry *ce,
 					     unsigned int mode)
 {
@@ -214,16 +203,6 @@ static inline int ce_to_dtype(const struct cache_entry *ce)
 		return DT_LNK;
 	else
 		return DT_UNKNOWN;
-}
-static inline unsigned int canon_mode(unsigned int mode)
-{
-	if (S_ISREG(mode))
-		return S_IFREG | ce_permissions(mode);
-	if (S_ISLNK(mode))
-		return S_IFLNK;
-	if (S_ISDIR(mode))
-		return S_IFDIR;
-	return S_IFGITLINK;
 }
 
 static inline int ce_path_match(struct index_state *istate,

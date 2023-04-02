@@ -110,4 +110,12 @@ int repo_interpret_branch_name(struct repository *r,
 struct object *repo_peel_to_type(struct repository *r,
 				 const char *name, int namelen,
 				 struct object *o, enum object_type);
+
+/* Convert to/from hex/sha1 representation */
+#define MINIMUM_ABBREV minimum_abbrev
+#define DEFAULT_ABBREV default_abbrev
+
+/* used when the code does not know or care what the default abbrev is */
+#define FALLBACK_DEFAULT_ABBREV 7
+
 #endif /* OBJECT_NAME_H */

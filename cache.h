@@ -629,13 +629,6 @@ extern int verify_ce_order;
 #define DATA_CHANGED    0x0020
 #define TYPE_CHANGED    0x0040
 
-/* Convert to/from hex/sha1 representation */
-#define MINIMUM_ABBREV minimum_abbrev
-#define DEFAULT_ABBREV default_abbrev
-
-/* used when the code does not know or care what the default abbrev is */
-#define FALLBACK_DEFAULT_ABBREV 7
-
 int base_name_compare(const char *name1, size_t len1, int mode1,
 		      const char *name2, size_t len2, int mode2);
 int df_name_compare(const char *name1, size_t len1, int mode1,

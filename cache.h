@@ -141,7 +141,6 @@ struct cache_entry {
 
 /* Forward structure decls */
 struct pathspec;
-struct child_process;
 struct tree;
 
 /*

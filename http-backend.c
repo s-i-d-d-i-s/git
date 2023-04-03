@@ -19,7 +19,7 @@
 #include "protocol.h"
 #include "date.h"
 #include "wrapper.h"
-#include "write-or-die.h"
+#include "write.h"
 
 static const char content_type[] = "Content-Type";
 static const char content_length[] = "Content-Length";

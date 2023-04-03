@@ -15,6 +15,7 @@
 #include "parse-options.h"
 #include "prompt.h"
 #include "fsmonitor-ipc.h"
+#include "write.h"
 
 struct category_description {
 	uint32_t category;

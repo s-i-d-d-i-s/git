@@ -27,6 +27,7 @@
 #include "submodule-config.h"
 #include "tempfile.h"
 #include "lockfile.h"
+#include "write.h"
 #include "wt-status.h"
 #include "commit-reach.h"
 #include "sequencer.h"

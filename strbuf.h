@@ -680,11 +680,6 @@ typedef int (*char_predicate)(char ch);
 void strbuf_addstr_urlencode(struct strbuf *sb, const char *name,
 			     char_predicate allow_unencoded_fn);
 
-__attribute__((format (printf,1,2)))
-int printf_ln(const char *fmt, ...);
-__attribute__((format (printf,2,3)))
-int fprintf_ln(FILE *fp, const char *fmt, ...);
-
 char *xstrdup_tolower(const char *);
 char *xstrdup_toupper(const char *);
 

@@ -33,6 +33,7 @@
 #include "tree.h"
 #include "tree-walk.h"
 #include "unpack-trees.h"
+#include "write.h"
 #include "wt-status.h"
 #include "xdiff-interface.h"
 #include "entry.h"

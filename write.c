@@ -2,7 +2,7 @@
 #include "config.h"
 #include "run-command.h"
 #include "wrapper.h"
-#include "write-or-die.h"
+#include "write.h"
 
 /*
  * Some cases use stdio, but want to flush after the write
@@ -57,6 +57,30 @@ void fprintf_or_die(FILE *f, const char *fmt, ...)
 		check_pipe(errno);
 		die_errno("write error");
 	}
+}
+
+int printf_ln(const char *fmt, ...)
+{
+	int ret;
+	va_list ap;
+	va_start(ap, fmt);
+	ret = vprintf(fmt, ap);
+	va_end(ap);
+	if (ret < 0 || putchar('\n') == EOF)
+		return -1;
+	return ret + 1;
+}
+
+int fprintf_ln(FILE *fp, const char *fmt, ...)
+{
+	int ret;
+	va_list ap;
+	va_start(ap, fmt);
+	ret = vfprintf(fp, fmt, ap);
+	va_end(ap);
+	if (ret < 0 || putc('\n', fp) == EOF)
+		return -1;
+	return ret + 1;
 }
 
 static int maybe_fsync(int fd)

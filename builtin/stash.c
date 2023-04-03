@@ -25,6 +25,7 @@
 #include "exec-cmd.h"
 #include "reflog.h"
 #include "add-interactive.h"
+#include "write.h"
 
 #define INCLUDE_ALL_FILES 2
 

@@ -2,7 +2,7 @@
 #define CSUM_FILE_H
 
 #include "hash.h"
-#include "write-or-die.h"
+#include "write.h"
 
 struct progress;
 

@@ -44,7 +44,7 @@
 #include "commit-reach.h"
 #include "range-diff.h"
 #include "tmp-objdir.h"
-#include "write-or-die.h"
+#include "write.h"
 
 #define MAIL_DEFAULT_WRAP 72
 #define COVER_FROM_AUTO_MAX_SUBJECT_LEN 100

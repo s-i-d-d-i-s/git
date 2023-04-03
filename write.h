@@ -1,9 +1,13 @@
-#ifndef WRITE_OR_DIE_H
-#define WRITE_OR_DIE_H
+#ifndef WRITE_H
+#define WRITE_H
 
 void maybe_flush_or_die(FILE *, const char *);
 __attribute__((format (printf, 2, 3)))
 void fprintf_or_die(FILE *, const char *fmt, ...);
+__attribute__((format (printf,1,2)))
+int printf_ln(const char *fmt, ...);
+__attribute__((format (printf,2,3)))
+int fprintf_ln(FILE *fp, const char *fmt, ...);
 void fwrite_or_die(FILE *f, const void *buf, size_t count);
 void fflush_or_die(FILE *f);
 void write_or_die(int fd, const void *buf, size_t count);
@@ -75,4 +79,4 @@ static inline int batch_fsync_enabled(enum fsync_component component)
 	return (fsync_components & component) && (fsync_method == FSYNC_METHOD_BATCH);
 }
 
-#endif /* WRITE_OR_DIE_H */
+#endif /* WRITE_H */

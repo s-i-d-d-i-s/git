@@ -26,7 +26,7 @@
 #include "replace-object.h"
 #include "promisor-remote.h"
 #include "mailmap.h"
-#include "write-or-die.h"
+#include "write.h"
 
 enum batch_mode {
 	BATCH_MODE_CONTENTS,

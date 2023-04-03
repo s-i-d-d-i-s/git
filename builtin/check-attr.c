@@ -10,7 +10,7 @@
 #include "repository.h"
 #include "setup.h"
 #include "parse-options.h"
-#include "write-or-die.h"
+#include "write.h"
 
 static int all_attrs;
 static int cached_attrs;

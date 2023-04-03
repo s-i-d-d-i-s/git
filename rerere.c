@@ -19,6 +19,7 @@
 #include "hash-lookup.h"
 #include "strmap.h"
 #include "wrapper.h"
+#include "write.h"
 
 #define RESOLVED 0
 #define PUNTED 1

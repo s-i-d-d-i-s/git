@@ -12,7 +12,7 @@
 #include "object-store.h"
 #include "streaming.h"
 #include "run-command.h"
-#include "write-or-die.h"
+#include "write.h"
 
 #define RECORDSIZE	(512)
 #define BLOCKSIZE	(RECORDSIZE * 20)

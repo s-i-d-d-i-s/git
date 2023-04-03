@@ -3,6 +3,7 @@
 #include "merge-ort.h"
 #include "merge-ort-wrappers.h"
 #include "repository.h"
+#include "write.h"
 
 #include "commit.h"
 

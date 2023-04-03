@@ -3,7 +3,7 @@
 #include "parse-options.h"
 #include "repository.h"
 #include "wrapper.h"
-#include "write-or-die.h"
+#include "write.h"
 
 #ifndef NO_UNIX_SOCKETS
 

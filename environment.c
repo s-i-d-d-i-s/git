@@ -28,7 +28,7 @@
 #include "shallow.h"
 #include "trace.h"
 #include "wrapper.h"
-#include "write-or-die.h"
+#include "write.h"
 
 int trust_executable_bit = 1;
 int trust_ctime = 1;

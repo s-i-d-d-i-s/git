@@ -20,6 +20,7 @@
 #include "notes-utils.h"
 #include "commit-reach.h"
 #include "wrapper.h"
+#include "write.h"
 
 struct notes_merge_pair {
 	struct object_id obj, base, local, remote;

@@ -6,6 +6,7 @@
 #include "color.h"
 #include "gettext.h"
 #include "utf8.h"
+#include "write.h"
 
 static int disallow_abbreviated_options;
 

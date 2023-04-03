@@ -37,7 +37,7 @@
 #include "worktree.h"
 #include "ws.h"
 #include "wrapper.h"
-#include "write-or-die.h"
+#include "write.h"
 
 struct config_source {
 	struct config_source *prev;

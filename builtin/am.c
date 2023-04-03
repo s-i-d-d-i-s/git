@@ -44,6 +44,7 @@
 #include "repository.h"
 #include "pretty.h"
 #include "wrapper.h"
+#include "write.h"
 
 /**
  * Returns the length of the first line of msg.

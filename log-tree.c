@@ -24,7 +24,7 @@
 #include "help.h"
 #include "range-diff.h"
 #include "strmap.h"
-#include "write-or-die.h"
+#include "write.h"
 
 static struct decoration name_decoration = { "object names" };
 static int decoration_loaded;

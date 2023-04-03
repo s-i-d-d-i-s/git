@@ -47,6 +47,7 @@
 #include "reset.h"
 #include "branch.h"
 #include "wrapper.h"
+#include "write.h"
 
 #define GIT_REFLOG_ACTION "GIT_REFLOG_ACTION"
 

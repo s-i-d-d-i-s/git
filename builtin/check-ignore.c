@@ -9,7 +9,7 @@
 #include "parse-options.h"
 #include "repository.h"
 #include "submodule.h"
-#include "write-or-die.h"
+#include "write.h"
 
 static int quiet, verbose, stdin_paths, show_non_matching, no_index;
 static const char * const check_ignore_usage[] = {

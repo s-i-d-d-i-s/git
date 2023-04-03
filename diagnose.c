@@ -10,7 +10,7 @@
 #include "object-store.h"
 #include "packfile.h"
 #include "parse-options.h"
-#include "write-or-die.h"
+#include "write.h"
 
 struct archive_dir {
 	const char *path;

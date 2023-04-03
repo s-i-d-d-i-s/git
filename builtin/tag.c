@@ -27,7 +27,7 @@
 #include "column.h"
 #include "ref-filter.h"
 #include "date.h"
-#include "write-or-die.h"
+#include "write.h"
 
 static const char * const git_tag_usage[] = {
 	N_("git tag [-a | -s | -u <key-id>] [-f] [-m <msg> | -F <file>] [-e]\n"

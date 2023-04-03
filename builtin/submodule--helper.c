@@ -16,6 +16,7 @@
 #include "submodule.h"
 #include "submodule-config.h"
 #include "string-list.h"
+#include "write.h"
 #include "run-command.h"
 #include "remote.h"
 #include "refs.h"

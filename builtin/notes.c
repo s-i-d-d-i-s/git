@@ -27,7 +27,7 @@
 #include "notes-merge.h"
 #include "notes-utils.h"
 #include "worktree.h"
-#include "write-or-die.h"
+#include "write.h"
 
 static const char * const git_notes_usage[] = {
 	N_("git notes [--ref <notes-ref>] [list [<object>]]"),

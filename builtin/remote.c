@@ -14,6 +14,7 @@
 #include "strvec.h"
 #include "commit-reach.h"
 #include "progress.h"
+#include "write.h"
 
 static const char * const builtin_remote_usage[] = {
 	"git remote [-v | --verbose]",

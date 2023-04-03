@@ -11,7 +11,7 @@
 #include "../chdir-notify.h"
 #include "../repository.h"
 #include "../wrapper.h"
-#include "../write-or-die.h"
+#include "../write.h"
 
 enum mmap_strategy {
 	/*

@@ -20,7 +20,7 @@
 #include "shallow.h"
 #include "parse-options.h"
 #include "trace2.h"
-#include "write-or-die.h"
+#include "write.h"
 
 int option_parse_push_signed(const struct option *opt,
 			     const char *arg, int unset)

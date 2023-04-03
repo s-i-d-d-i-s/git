@@ -16,6 +16,7 @@
 #include "trace2.h"
 #include "strbuf.h"
 #include "version.h"
+#include "write.h"
 #include "protocol.h"
 #include "alias.h"
 #include "bundle-uri.h"

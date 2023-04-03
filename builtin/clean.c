@@ -17,6 +17,7 @@
 #include "repository.h"
 #include "setup.h"
 #include "string-list.h"
+#include "write.h"
 #include "quote.h"
 #include "column.h"
 #include "color.h"

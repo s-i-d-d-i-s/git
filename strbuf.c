@@ -880,30 +880,6 @@ void strbuf_humanise_rate(struct strbuf *buf, off_t bytes)
 	strbuf_humanise(buf, bytes, 1);
 }
 
-int printf_ln(const char *fmt, ...)
-{
-	int ret;
-	va_list ap;
-	va_start(ap, fmt);
-	ret = vprintf(fmt, ap);
-	va_end(ap);
-	if (ret < 0 || putchar('\n') == EOF)
-		return -1;
-	return ret + 1;
-}
-
-int fprintf_ln(FILE *fp, const char *fmt, ...)
-{
-	int ret;
-	va_list ap;
-	va_start(ap, fmt);
-	ret = vfprintf(fp, fmt, ap);
-	va_end(ap);
-	if (ret < 0 || putc('\n', fp) == EOF)
-		return -1;
-	return ret + 1;
-}
-
 char *xstrdup_tolower(const char *string)
 {
 	char *result;

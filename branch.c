@@ -16,6 +16,7 @@
 #include "submodule-config.h"
 #include "run-command.h"
 #include "strmap.h"
+#include "write.h"
 
 struct tracking {
 	struct refspec_item spec;

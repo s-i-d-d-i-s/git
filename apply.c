@@ -34,6 +34,7 @@
 #include "symlinks.h"
 #include "ws.h"
 #include "wrapper.h"
+#include "write.h"
 
 struct gitdiff_data {
 	struct strbuf *root;

@@ -10,6 +10,7 @@
 #include "parse-options.h"
 #include "path.h"
 #include "run-command.h"
+#include "write.h"
 #include "config-list.h"
 #include "help.h"
 #include "alias.h"

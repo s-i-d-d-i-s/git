@@ -26,7 +26,7 @@
 #include "split-index.h"
 #include "symlinks.h"
 #include "fsmonitor.h"
-#include "write-or-die.h"
+#include "write.h"
 
 /*
  * Default to not allowing changes to the list of files. The

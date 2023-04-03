@@ -16,7 +16,7 @@
 #include "parse-options.h"
 #include "exec-cmd.h"
 #include "setup.h"
-#include "write-or-die.h"
+#include "write.h"
 
 /*
  * This is to create corrupt objects for debugging and as such it

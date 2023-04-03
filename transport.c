@@ -1,6 +1,8 @@
 #include "git-compat-util.h"
+#include "advice.h"
 #include "alloc.h"
 #include "config.h"
+#include "environment.h"
 #include "hex.h"
 #include "transport.h"
 #include "hook.h"
@@ -21,11 +23,14 @@
 #include "string-list.h"
 #include "oid-array.h"
 #include "sigchain.h"
+#include "trace2.h"
 #include "transport-internal.h"
 #include "protocol.h"
+#include "object-name.h"
 #include "object-store.h"
 #include "color.h"
 #include "bundle-uri.h"
+#include "wrapper.h"
 
 static int transport_use_color = -1;
 static char transport_colors[][COLOR_MAXLEN] = {
@@ -783,7 +788,8 @@ static int print_one_push_status(struct ref *ref, const char *dest, int count,
 static int measure_abbrev(const struct object_id *oid, int sofar)
 {
 	char hex[GIT_MAX_HEXSZ + 1];
-	int w = find_unique_abbrev_r(hex, oid, DEFAULT_ABBREV);
+	int w = repo_find_unique_abbrev_r(the_repository, hex, oid,
+					  DEFAULT_ABBREV);
 
 	return (w < sofar) ? sofar : w;
 }

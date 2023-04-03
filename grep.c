@@ -1,5 +1,6 @@
-#include "cache.h"
+#include "git-compat-util.h"
 #include "config.h"
+#include "gettext.h"
 #include "grep.h"
 #include "hex.h"
 #include "object-store.h"
@@ -10,6 +11,7 @@
 #include "commit.h"
 #include "quote.h"
 #include "help.h"
+#include "wrapper.h"
 
 static int grep_source_load(struct grep_source *gs);
 static int grep_source_is_binary(struct grep_source *gs,

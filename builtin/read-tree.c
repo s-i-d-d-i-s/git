@@ -7,9 +7,11 @@
 #define USE_THE_INDEX_VARIABLE
 #include "cache.h"
 #include "config.h"
+#include "gettext.h"
 #include "hex.h"
 #include "lockfile.h"
 #include "object.h"
+#include "object-name.h"
 #include "tree.h"
 #include "tree-walk.h"
 #include "cache-tree.h"
@@ -17,7 +19,9 @@
 #include "dir.h"
 #include "builtin.h"
 #include "parse-options.h"
+#include "repository.h"
 #include "resolve-undo.h"
+#include "setup.h"
 #include "submodule.h"
 #include "submodule-config.h"
 
@@ -199,7 +203,7 @@ int cmd_read_tree(int argc, const char **argv, const char *cmd_prefix)
 	for (i = 0; i < argc; i++) {
 		const char *arg = argv[i];
 
-		if (get_oid(arg, &oid))
+		if (repo_get_oid(the_repository, arg, &oid))
 			die("Not a valid object name %s", arg);
 		if (list_tree(&oid) < 0)
 			die("failed to unpack tree object %s", arg);

@@ -1,7 +1,9 @@
 #include "test-tool.h"
-#include "cache.h"
 #include "hex.h"
+#include "object-name.h"
 #include "oidmap.h"
+#include "repository.h"
+#include "setup.h"
 #include "strbuf.h"
 
 /* key is an oid and value is a name (could be a refname for example) */
@@ -50,7 +52,7 @@ int cmd__oidmap(int argc, const char **argv)
 
 		if (!strcmp("put", cmd) && p1 && p2) {
 
-			if (get_oid(p1, &oid)) {
+			if (repo_get_oid(the_repository, p1, &oid)) {
 				printf("Unknown oid: %s\n", p1);
 				continue;
 			}
@@ -68,7 +70,7 @@ int cmd__oidmap(int argc, const char **argv)
 
 		} else if (!strcmp("get", cmd) && p1) {
 
-			if (get_oid(p1, &oid)) {
+			if (repo_get_oid(the_repository, p1, &oid)) {
 				printf("Unknown oid: %s\n", p1);
 				continue;
 			}
@@ -81,7 +83,7 @@ int cmd__oidmap(int argc, const char **argv)
 
 		} else if (!strcmp("remove", cmd) && p1) {
 
-			if (get_oid(p1, &oid)) {
+			if (repo_get_oid(the_repository, p1, &oid)) {
 				printf("Unknown oid: %s\n", p1);
 				continue;
 			}

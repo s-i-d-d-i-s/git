@@ -1,6 +1,8 @@
 #include "builtin.h"
 #include "alloc.h"
+#include "gettext.h"
 #include "hex.h"
+#include "object-file.h"
 #include "pkt-line.h"
 #include "fetch-pack.h"
 #include "remote.h"

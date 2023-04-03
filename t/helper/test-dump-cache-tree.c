@@ -4,7 +4,8 @@
 #include "hex.h"
 #include "tree.h"
 #include "cache-tree.h"
-
+#include "repository.h"
+#include "setup.h"
 
 static void dump_one(struct cache_tree *it, const char *pfx, const char *x)
 {

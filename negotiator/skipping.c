@@ -1,10 +1,11 @@
-#include "cache.h"
+#include "git-compat-util.h"
 #include "skipping.h"
 #include "../commit.h"
 #include "../fetch-negotiator.h"
 #include "../hex.h"
 #include "../prio-queue.h"
 #include "../refs.h"
+#include "../repository.h"
 #include "../tag.h"
 
 /* Remember to update object flag allocation in object.h */
@@ -184,7 +185,7 @@ static const struct object_id *get_rev(struct data *data)
 		if (!(commit->object.flags & COMMON) && !entry->ttl)
 			to_send = commit;
 
-		parse_commit(commit);
+		repo_parse_commit(the_repository, commit);
 		for (p = commit->parents; p; p = p->next)
 			parent_pushed |= push_parent(data, entry, p->item);
 

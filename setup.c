@@ -1,11 +1,18 @@
-#include "cache.h"
+#include "git-compat-util.h"
+#include "abspath.h"
+#include "environment.h"
+#include "gettext.h"
+#include "object-name.h"
 #include "repository.h"
 #include "config.h"
 #include "dir.h"
+#include "setup.h"
 #include "string-list.h"
 #include "chdir-notify.h"
 #include "promisor-remote.h"
 #include "quote.h"
+#include "trace2.h"
+#include "wrapper.h"
 
 static int inside_git_dir = -1;
 static int inside_work_tree = -1;

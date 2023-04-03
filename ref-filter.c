@@ -1,10 +1,14 @@
 #include "git-compat-util.h"
 #include "alloc.h"
+#include "environment.h"
+#include "gettext.h"
 #include "hex.h"
 #include "parse-options.h"
 #include "refs.h"
 #include "wildmatch.h"
+#include "object-name.h"
 #include "object-store.h"
+#include "oid-array.h"
 #include "repository.h"
 #include "commit.h"
 #include "remote.h"
@@ -15,6 +19,7 @@
 #include "revision.h"
 #include "utf8.h"
 #include "version.h"
+#include "versioncmp.h"
 #include "trailer.h"
 #include "wt-status.h"
 #include "commit-slab.h"
@@ -1093,9 +1098,11 @@ static const char *do_grab_oid(const char *field, const struct object_id *oid,
 	case O_FULL:
 		return oid_to_hex(oid);
 	case O_LENGTH:
-		return find_unique_abbrev(oid, atom->u.oid.length);
+		return repo_find_unique_abbrev(the_repository, oid,
+					       atom->u.oid.length);
 	case O_SHORT:
-		return find_unique_abbrev(oid, DEFAULT_ABBREV);
+		return repo_find_unique_abbrev(the_repository, oid,
+					       DEFAULT_ABBREV);
 	default:
 		BUG("unknown %%(%s) option", field);
 	}
@@ -2783,7 +2790,7 @@ int parse_opt_merge_filter(const struct option *opt, const char *arg, int unset)
 
 	BUG_ON_OPT_NEG(unset);
 
-	if (get_oid(arg, &oid))
+	if (repo_get_oid(the_repository, arg, &oid))
 		die(_("malformed object name %s"), arg);
 
 	merge_commit = lookup_commit_reference_gently(the_repository, &oid, 0);

@@ -10,13 +10,19 @@
 
 #define USE_THE_INDEX_VARIABLE
 #include "builtin.h"
+#include "abspath.h"
+#include "advice.h"
 #include "config.h"
+#include "copy.h"
+#include "environment.h"
+#include "gettext.h"
 #include "hex.h"
 #include "lockfile.h"
 #include "parse-options.h"
 #include "fetch-pack.h"
 #include "refs.h"
 #include "refspec.h"
+#include "object-file.h"
 #include "object-store.h"
 #include "tree.h"
 #include "tree-walk.h"
@@ -30,12 +36,15 @@
 #include "branch.h"
 #include "remote.h"
 #include "run-command.h"
+#include "setup.h"
 #include "connected.h"
 #include "packfile.h"
+#include "pkt-line.h"
 #include "list-objects-filter-options.h"
 #include "hook.h"
 #include "bundle.h"
 #include "bundle-uri.h"
+#include "wrapper.h"
 
 /*
  * Overall FIXMEs:
@@ -548,9 +557,9 @@ static void write_followtags(const struct ref *refs, const char *msg)
 			continue;
 		if (ends_with(ref->name, "^{}"))
 			continue;
-		if (!has_object_file_with_flags(&ref->old_oid,
-						OBJECT_INFO_QUICK |
-						OBJECT_INFO_SKIP_FETCH_OBJECT))
+		if (!repo_has_object_file_with_flags(the_repository, &ref->old_oid,
+						     OBJECT_INFO_QUICK |
+						     OBJECT_INFO_SKIP_FETCH_OBJECT))
 			continue;
 		update_ref(msg, ref->name, &ref->old_oid, NULL, 0,
 			   UPDATE_REFS_DIE_ON_ERR);

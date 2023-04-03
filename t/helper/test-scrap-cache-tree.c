@@ -2,6 +2,8 @@
 #include "test-tool.h"
 #include "cache.h"
 #include "lockfile.h"
+#include "repository.h"
+#include "setup.h"
 #include "tree.h"
 #include "cache-tree.h"
 

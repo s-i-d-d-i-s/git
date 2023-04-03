@@ -1,5 +1,6 @@
 #include "git-compat-util.h"
 #include "config.h"
+#include "gettext.h"
 #include "hex.h"
 #include "lockfile.h"
 #include "pack.h"
@@ -10,7 +11,9 @@
 #include "revision.h"
 #include "hash-lookup.h"
 #include "commit-graph.h"
+#include "object-file.h"
 #include "object-store.h"
+#include "oid-array.h"
 #include "alloc.h"
 #include "hashmap.h"
 #include "replace-object.h"
@@ -21,6 +24,7 @@
 #include "json-writer.h"
 #include "trace2.h"
 #include "chunk-format.h"
+#include "wrapper.h"
 
 void git_test_write_commit_graph_or_die(void)
 {
@@ -2361,7 +2365,7 @@ int write_commit_graph(struct object_directory *odb,
 			replace = ctx->opts->split_flags & COMMIT_GRAPH_SPLIT_REPLACE;
 	}
 
-	ctx->approx_nr_objects = approximate_object_count();
+	ctx->approx_nr_objects = repo_approximate_object_count(the_repository);
 
 	if (ctx->append && ctx->r->objects->commit_graph) {
 		struct commit_graph *g = ctx->r->objects->commit_graph;
@@ -2550,7 +2554,7 @@ int verify_commit_graph(struct repository *r, struct commit_graph *g, int flags)
 
 		graph_commit = lookup_commit(r, &cur_oid);
 		odb_commit = (struct commit *)create_object(r, &cur_oid, alloc_commit_node(r));
-		if (parse_commit_internal(odb_commit, 0, 0)) {
+		if (repo_parse_commit_internal(r, odb_commit, 0, 0)) {
 			graph_report(_("failed to parse commit %s from object database for commit-graph"),
 				     oid_to_hex(&cur_oid));
 			continue;

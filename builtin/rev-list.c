@@ -2,12 +2,16 @@
 #include "config.h"
 #include "commit.h"
 #include "diff.h"
+#include "environment.h"
+#include "gettext.h"
 #include "hex.h"
 #include "revision.h"
 #include "list-objects.h"
 #include "list-objects-filter.h"
 #include "list-objects-filter-options.h"
 #include "object.h"
+#include "object-name.h"
+#include "object-file.h"
 #include "object-store.h"
 #include "pack.h"
 #include "pack-bitmap.h"
@@ -135,7 +139,7 @@ static void show_commit(struct commit *commit, void *data)
 		if (!revs->graph)
 			fputs(get_revision_mark(revs, commit), stdout);
 		if (revs->abbrev_commit && revs->abbrev)
-			fputs(find_unique_abbrev(&commit->object.oid, revs->abbrev),
+			fputs(repo_find_unique_abbrev(the_repository, &commit->object.oid, revs->abbrev),
 			      stdout);
 		else
 			fputs(oid_to_hex(&commit->object.oid), stdout);

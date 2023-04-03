@@ -1,8 +1,11 @@
 #include "cache.h"
+#include "advice.h"
 #include "strvec.h"
 #include "repository.h"
 #include "config.h"
 #include "dir.h"
+#include "environment.h"
+#include "gettext.h"
 #include "hex.h"
 #include "tree.h"
 #include "tree-walk.h"
@@ -15,11 +18,14 @@
 #include "sparse-index.h"
 #include "submodule.h"
 #include "submodule-config.h"
+#include "symlinks.h"
+#include "trace2.h"
 #include "fsmonitor.h"
 #include "object-store.h"
 #include "promisor-remote.h"
 #include "entry.h"
 #include "parallel-checkout.h"
+#include "setup.h"
 
 /*
  * Error messages expected by scripts out of plumbing commands such as
@@ -459,7 +465,7 @@ static int check_updates(struct unpack_trees_options *o,
 	if (should_update_submodules())
 		load_gitmodules_file(index, &state);
 
-	if (has_promisor_remote())
+	if (repo_has_promisor_remote(the_repository))
 		/*
 		 * Prefetch the objects that are to be checked out in the loop
 		 * below.

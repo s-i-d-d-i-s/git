@@ -1,5 +1,6 @@
 #include "builtin.h"
 #include "cache.h"
+#include "gettext.h"
 #include "hex.h"
 #include "repository.h"
 #include "config.h"
@@ -18,6 +19,8 @@
 #include "streaming.h"
 #include "decorate.h"
 #include "packfile.h"
+#include "object-file.h"
+#include "object-name.h"
 #include "object-store.h"
 #include "replace-object.h"
 #include "resolve-undo.h"
@@ -959,7 +962,7 @@ int cmd_fsck(int argc, const char **argv, const char *prefix)
 	for (i = 0; i < argc; i++) {
 		const char *arg = argv[i];
 		struct object_id oid;
-		if (!get_oid(arg, &oid)) {
+		if (!repo_get_oid(the_repository, arg, &oid)) {
 			struct object *obj = lookup_object(the_repository,
 							   &oid);
 

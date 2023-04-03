@@ -1,9 +1,10 @@
 #include "test-tool.h"
-#include "cache.h"
 #include "strvec.h"
 #include "run-command.h"
 #include "exec-cmd.h"
 #include "config.h"
+#include "repository.h"
+#include "trace2.h"
 
 typedef int(fn_unit_test)(int argc, const char **argv);
 

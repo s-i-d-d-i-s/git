@@ -4,6 +4,8 @@
 #include "git-compat-util.h"
 #include "alloc.h"
 #include "bulk-checkin.h"
+#include "environment.h"
+#include "gettext.h"
 #include "hex.h"
 #include "lockfile.h"
 #include "repository.h"
@@ -13,7 +15,9 @@
 #include "string-list.h"
 #include "tmp-objdir.h"
 #include "packfile.h"
+#include "object-file.h"
 #include "object-store.h"
+#include "wrapper.h"
 
 static int odb_transaction_nesting;
 
@@ -126,7 +130,7 @@ static int already_written(struct bulk_checkin_packfile *state, struct object_id
 	int i;
 
 	/* The object may already exist in the repository */
-	if (has_object_file(oid))
+	if (repo_has_object_file(the_repository, oid))
 		return 1;
 
 	/* Might want to keep the list sorted */

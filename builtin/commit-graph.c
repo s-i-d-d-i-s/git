@@ -1,6 +1,8 @@
 #include "builtin.h"
 #include "config.h"
 #include "dir.h"
+#include "environment.h"
+#include "gettext.h"
 #include "hex.h"
 #include "lockfile.h"
 #include "parse-options.h"
@@ -10,6 +12,7 @@
 #include "progress.h"
 #include "replace-object.h"
 #include "tag.h"
+#include "trace2.h"
 
 #define BUILTIN_COMMIT_GRAPH_VERIFY_USAGE \
 	N_("git commit-graph verify [--object-dir <dir>] [--shallow] [--[no-]progress]")

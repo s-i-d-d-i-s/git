@@ -8,8 +8,10 @@
 #include "cache.h"
 #include "config.h"
 #include "builtin.h"
+#include "gettext.h"
 #include "tag.h"
 #include "run-command.h"
+#include "object-name.h"
 #include "parse-options.h"
 #include "gpg-interface.h"
 #include "ref-filter.h"
@@ -52,7 +54,7 @@ int cmd_verify_tag(int argc, const char **argv, const char *prefix)
 		struct object_id oid;
 		const char *name = argv[i++];
 
-		if (get_oid(name, &oid)) {
+		if (repo_get_oid(the_repository, name, &oid)) {
 			had_error = !!error("tag '%s' not found.", name);
 			continue;
 		}

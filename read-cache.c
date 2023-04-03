@@ -14,15 +14,23 @@
 #include "cache-tree.h"
 #include "refs.h"
 #include "dir.h"
+#include "object-file.h"
 #include "object-store.h"
+#include "oid-array.h"
 #include "tree.h"
 #include "commit.h"
 #include "blob.h"
+#include "environment.h"
+#include "gettext.h"
+#include "mem-pool.h"
+#include "object-name.h"
 #include "resolve-undo.h"
 #include "run-command.h"
 #include "strbuf.h"
+#include "trace2.h"
 #include "varint.h"
 #include "split-index.h"
+#include "symlinks.h"
 #include "utf8.h"
 #include "fsmonitor.h"
 #include "thread-utils.h"
@@ -31,6 +39,7 @@
 #include "csum-file.h"
 #include "promisor-remote.h"
 #include "hook.h"
+#include "wrapper.h"
 
 /* Mask for the name length in ce_flags in the on-disk index */
 
@@ -265,7 +274,7 @@ static int ce_compare_link(const struct cache_entry *ce, size_t expected_size)
 	if (strbuf_readlink(&sb, ce->name, expected_size))
 		return -1;
 
-	buffer = read_object_file(&ce->oid, &type, &size);
+	buffer = repo_read_object_file(the_repository, &ce->oid, &type, &size);
 	if (buffer) {
 		if (size == sb.len)
 			match = memcmp(buffer, sb.buf, size);
@@ -490,75 +499,8 @@ int ie_modified(struct index_state *istate,
 	return 0;
 }
 
-int base_name_compare(const char *name1, size_t len1, int mode1,
-		      const char *name2, size_t len2, int mode2)
-{
-	unsigned char c1, c2;
-	size_t len = len1 < len2 ? len1 : len2;
-	int cmp;
-
-	cmp = memcmp(name1, name2, len);
-	if (cmp)
-		return cmp;
-	c1 = name1[len];
-	c2 = name2[len];
-	if (!c1 && S_ISDIR(mode1))
-		c1 = '/';
-	if (!c2 && S_ISDIR(mode2))
-		c2 = '/';
-	return (c1 < c2) ? -1 : (c1 > c2) ? 1 : 0;
-}
-
-/*
- * df_name_compare() is identical to base_name_compare(), except it
- * compares conflicting directory/file entries as equal. Note that
- * while a directory name compares as equal to a regular file, they
- * then individually compare _differently_ to a filename that has
- * a dot after the basename (because '\0' < '.' < '/').
- *
- * This is used by routines that want to traverse the git namespace
- * but then handle conflicting entries together when possible.
- */
-int df_name_compare(const char *name1, size_t len1, int mode1,
-		    const char *name2, size_t len2, int mode2)
-{
-	unsigned char c1, c2;
-	size_t len = len1 < len2 ? len1 : len2;
-	int cmp;
-
-	cmp = memcmp(name1, name2, len);
-	if (cmp)
-		return cmp;
-	/* Directories and files compare equal (same length, same name) */
-	if (len1 == len2)
-		return 0;
-	c1 = name1[len];
-	if (!c1 && S_ISDIR(mode1))
-		c1 = '/';
-	c2 = name2[len];
-	if (!c2 && S_ISDIR(mode2))
-		c2 = '/';
-	if (c1 == '/' && !c2)
-		return 0;
-	if (c2 == '/' && !c1)
-		return 0;
-	return c1 - c2;
-}
-
-int name_compare(const char *name1, size_t len1, const char *name2, size_t len2)
-{
-	size_t min_len = (len1 < len2) ? len1 : len2;
-	int cmp = memcmp(name1, name2, min_len);
-	if (cmp)
-		return cmp;
-	if (len1 < len2)
-		return -1;
-	if (len1 > len2)
-		return 1;
-	return 0;
-}
-
-int cache_name_stage_compare(const char *name1, int len1, int stage1, const char *name2, int len2, int stage2)
+static int cache_name_stage_compare(const char *name1, int len1, int stage1,
+				    const char *name2, int len2, int stage2)
 {
 	int cmp;
 
@@ -571,6 +513,16 @@ int cache_name_stage_compare(const char *name1, int len1, int stage1, const char
 	if (stage1 > stage2)
 		return 1;
 	return 0;
+}
+
+int cmp_cache_name_compare(const void *a_, const void *b_)
+{
+	const struct cache_entry *ce1, *ce2;
+
+	ce1 = *((const struct cache_entry **)a_);
+	ce2 = *((const struct cache_entry **)b_);
+	return cache_name_stage_compare(ce1->name, ce1->ce_namelen, ce_stage(ce1),
+				  ce2->name, ce2->ce_namelen, ce_stage(ce2));
 }
 
 static int index_name_stage_pos(struct index_state *istate,
@@ -2630,7 +2582,7 @@ int repo_index_has_changes(struct repository *repo,
 
 	if (tree)
 		cmp = tree->object.oid;
-	if (tree || !get_oid_tree("HEAD", &cmp)) {
+	if (tree || !repo_get_oid_tree(repo, "HEAD", &cmp)) {
 		struct diff_options opt;
 
 		repo_diff_setup(repo, &opt);
@@ -2949,7 +2901,7 @@ static int do_write_index(struct index_state *istate, struct tempfile *tempfile,
 	}
 
 	if (!istate->version)
-		istate->version = get_index_format_default(the_repository);
+		istate->version = get_index_format_default(r);
 
 	/* demote version 3 to version 2 when the latter suffices */
 	if (istate->version == 3 || istate->version == 2)
@@ -3555,7 +3507,8 @@ void *read_blob_data_from_index(struct index_state *istate,
 	}
 	if (pos < 0)
 		return NULL;
-	data = read_object_file(&istate->cache[pos]->oid, &type, &sz);
+	data = repo_read_object_file(the_repository, &istate->cache[pos]->oid,
+				     &type, &sz);
 	if (!data || type != OBJ_BLOB) {
 		free(data);
 		return NULL;

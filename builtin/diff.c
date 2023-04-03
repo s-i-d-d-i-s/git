@@ -11,6 +11,7 @@
 #include "color.h"
 #include "commit.h"
 #include "blob.h"
+#include "gettext.h"
 #include "tag.h"
 #include "diff.h"
 #include "diff-merges.h"
@@ -18,6 +19,7 @@
 #include "revision.h"
 #include "log-tree.h"
 #include "builtin.h"
+#include "setup.h"
 #include "submodule.h"
 #include "oid-array.h"
 
@@ -548,7 +550,8 @@ int cmd_diff(int argc, const char **argv, const char *prefix)
 		if (!obj)
 			die(_("invalid object '%s' given."), name);
 		if (obj->type == OBJ_COMMIT)
-			obj = &get_commit_tree(((struct commit *)obj))->object;
+			obj = &repo_get_commit_tree(the_repository,
+						    ((struct commit *)obj))->object;
 
 		if (obj->type == OBJ_TREE) {
 			if (sdiff.skip && bitmap_get(sdiff.skip, i))

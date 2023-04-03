@@ -6,6 +6,9 @@
 
 #define USE_THE_INDEX_VARIABLE
 #include "builtin.h"
+#include "abspath.h"
+#include "environment.h"
+#include "gettext.h"
 #include "hex.h"
 #include "run-command.h"
 #include "exec-cmd.h"
@@ -18,6 +21,8 @@
 #include "cache-tree.h"
 #include "unpack-trees.h"
 #include "lockfile.h"
+#include "object-file.h"
+#include "object-name.h"
 #include "parse-options.h"
 #include "commit.h"
 #include "diff.h"
@@ -29,7 +34,9 @@
 #include "sequencer.h"
 #include "rebase-interactive.h"
 #include "reset.h"
+#include "trace2.h"
 #include "hook.h"
+#include "wrapper.h"
 
 static char const * const builtin_rebase_usage[] = {
 	N_("git rebase [-i] [options] [--exec <cmd>] "
@@ -219,13 +226,15 @@ static int get_revision_ranges(struct commit *upstream, struct commit *onto,
 	*revisions = xstrfmt("%s...%s", oid_to_hex(&base_rev->object.oid),
 			     oid_to_hex(orig_head));
 
-	shorthead = find_unique_abbrev(orig_head, DEFAULT_ABBREV);
+	shorthead = repo_find_unique_abbrev(the_repository, orig_head,
+					    DEFAULT_ABBREV);
 
 	if (upstream) {
 		const char *shortrev;
 
-		shortrev = find_unique_abbrev(&base_rev->object.oid,
-					      DEFAULT_ABBREV);
+		shortrev = repo_find_unique_abbrev(the_repository,
+						   &base_rev->object.oid,
+						   DEFAULT_ABBREV);
 
 		*shortrevisions = xstrfmt("%s..%s", shortrev, shorthead);
 	} else
@@ -852,7 +861,7 @@ static int checkout_up_to_date(struct rebase_options *options)
 static int is_linear_history(struct commit *from, struct commit *to)
 {
 	while (to && to != from) {
-		parse_commit(to);
+		repo_parse_commit(the_repository, to);
 		if (!to->parents)
 			return 1;
 		if (to->parents->next)
@@ -881,7 +890,7 @@ static int can_fast_forward(struct commit *onto, struct commit *upstream,
 	if (!upstream)
 		goto done;
 
-	merge_bases = get_merge_bases(upstream, head);
+	merge_bases = repo_get_merge_bases(the_repository, upstream, head);
 	if (!merge_bases || merge_bases->next)
 		goto done;
 
@@ -900,7 +909,8 @@ static void fill_branch_base(struct rebase_options *options,
 {
 	struct commit_list *merge_bases = NULL;
 
-	merge_bases = get_merge_bases(options->onto, options->orig_head);
+	merge_bases = repo_get_merge_bases(the_repository, options->onto,
+					   options->orig_head);
 	if (!merge_bases || merge_bases->next)
 		oidcpy(branch_base, null_oid());
 	else
@@ -1262,7 +1272,7 @@ int cmd_rebase(int argc, const char **argv, const char *prefix)
 		int fd;
 
 		/* Sanity check */
-		if (get_oid("HEAD", &head))
+		if (repo_get_oid(the_repository, "HEAD", &head))
 			die(_("Cannot read HEAD"));
 
 		fd = repo_hold_locked_index(the_repository, &lock_file, 0);
@@ -1681,7 +1691,7 @@ int cmd_rebase(int argc, const char **argv, const char *prefix)
 	} else if (!options.onto_name)
 		options.onto_name = options.upstream_name;
 	if (strstr(options.onto_name, "...")) {
-		if (get_oid_mb(options.onto_name, &branch_base) < 0) {
+		if (repo_get_oid_mb(the_repository, options.onto_name, &branch_base) < 0) {
 			if (keep_base)
 				die(_("'%s': need exactly one merge base with branch"),
 				    options.upstream_name);
@@ -1784,7 +1794,7 @@ int cmd_rebase(int argc, const char **argv, const char *prefix)
 		}
 
 		/* We want color (if set), but no pager */
-		diff_setup(&opts);
+		repo_diff_setup(the_repository, &opts);
 		opts.stat_width = -1; /* use full terminal width */
 		opts.stat_graph_width = -1; /* respect statGraphWidth config */
 		opts.output_format |=

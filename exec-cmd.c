@@ -1,7 +1,12 @@
 #include "cache.h"
+#include "abspath.h"
+#include "environment.h"
 #include "exec-cmd.h"
+#include "gettext.h"
 #include "quote.h"
 #include "strvec.h"
+#include "trace.h"
+#include "trace2.h"
 
 #if defined(RUNTIME_PREFIX)
 

@@ -1,7 +1,10 @@
 #include "cache.h"
 #include "config.h"
 #include "builtin.h"
+#include "gettext.h"
 #include "parse-options.h"
+#include "path.h"
+#include "repository.h"
 #include "run-command.h"
 #include "string-list.h"
 

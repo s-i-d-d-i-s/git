@@ -6,9 +6,7 @@
 #include "config.h"
 #include "gettext.h"
 #include "object.h"
-#include "repository.h"
 #include "strbuf.h"
-#include "trace2.h"
 #include "wrapper.h"
 
 static intmax_t count_fsync_writeout_only;
@@ -601,16 +599,13 @@ int git_fsync(int fd, enum fsync_action action)
 	}
 }
 
-static void log_trace_fsync_if(const char *key, intmax_t value)
+intmax_t get_trace_git_fsync_stats(const char *key)
 {
-	if (value)
-		trace2_data_intmax("fsync", the_repository, key, value);
-}
-
-void trace_git_fsync_stats(void)
-{
-	log_trace_fsync_if("fsync/writeout-only", count_fsync_writeout_only);
-	log_trace_fsync_if("fsync/hardware-flush", count_fsync_hardware_flush);
+	if (!strcmp(key, "fsync/writeout-only"))
+		return count_fsync_writeout_only;
+	if (!strcmp(key, "fsync/hardware-flush"))
+		return count_fsync_hardware_flush;
+	return 0;
 }
 
 static int warn_if_unremovable(const char *op, const char *file, int rc)

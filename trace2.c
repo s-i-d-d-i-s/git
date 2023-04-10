@@ -915,3 +915,16 @@ const char *trace2_session_id(void)
 {
 	return tr2_sid_get();
 }
+
+static void log_trace_fsync_if(const char *key)
+{	
+	intmax_t value = get_trace_git_fsync_stats(key);
+	if (value)
+		trace2_data_intmax("fsync", the_repository, key, value);
+}
+
+void trace_git_fsync_stats(void)
+{
+	log_trace_fsync_if("fsync/writeout-only");
+	log_trace_fsync_if("fsync/hardware-flush");
+}

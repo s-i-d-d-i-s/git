@@ -581,4 +581,9 @@ void trace2_collect_process_info(enum trace2_process_info_reason reason);
 
 const char *trace2_session_id(void);
 
+/*
+ * Writes out trace statistics for fsync
+ */
+void trace_git_fsync_stats(void);
+
 #endif /* TRACE2_H */

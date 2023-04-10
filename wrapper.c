@@ -5,7 +5,6 @@
 #include "abspath.h"
 #include "config.h"
 #include "gettext.h"
-#include "object.h"
 #include "strbuf.h"
 #include "wrapper.h"
 
@@ -641,11 +640,6 @@ int unlink_or_warn(const char *file)
 int rmdir_or_warn(const char *file)
 {
 	return warn_if_unremovable("rmdir", file, rmdir(file));
-}
-
-int remove_or_warn(unsigned int mode, const char *file)
-{
-	return S_ISGITLINK(mode) ? rmdir_or_warn(file) : unlink_or_warn(file);
 }
 
 static int access_error_is_ok(int err, unsigned flag)

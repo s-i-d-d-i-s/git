@@ -281,7 +281,8 @@ void strbuf_splice(struct strbuf *sb, size_t pos, size_t len,
  * by a comment character and a blank.
  */
 void strbuf_add_commented_lines(struct strbuf *out,
-				const char *buf, size_t size);
+				const char *buf, size_t size,
+				char comment_line_char);
 
 
 /**
@@ -410,8 +411,8 @@ void strbuf_addf(struct strbuf *sb, const char *fmt, ...);
  * Add a formatted string prepended by a comment character and a
  * blank to the buffer.
  */
-__attribute__((format (printf, 2, 3)))
-void strbuf_commented_addf(struct strbuf *sb, const char *fmt, ...);
+__attribute__((format (printf, 3, 4)))
+void strbuf_commented_addf(struct strbuf *sb, char comment_line_char, const char *fmt, ...);
 
 __attribute__((format (printf,2,0)))
 void strbuf_vaddf(struct strbuf *sb, const char *fmt, va_list ap);
@@ -536,7 +537,7 @@ int strbuf_normalize_path(struct strbuf *sb);
  * Strip whitespace from a buffer. The second parameter controls if
  * comments are considered contents to be removed or not.
  */
-void strbuf_stripspace(struct strbuf *buf, int skip_comments);
+void strbuf_stripspace(struct strbuf *buf, int skip_comments, char comment_line_char);
 
 static inline int strbuf_strip_suffix(struct strbuf *sb, const char *suffix)
 {

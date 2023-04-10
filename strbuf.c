@@ -1,6 +1,5 @@
 #include "git-compat-util.h"
 #include "alloc.h"
-#include "environment.h"
 #include "gettext.h"
 #include "hex.h"
 #include "object-name.h"
@@ -324,7 +323,7 @@ static void add_lines(struct strbuf *out,
 	strbuf_complete_line(out);
 }
 
-void strbuf_add_commented_lines(struct strbuf *out, const char *buf, size_t size)
+void strbuf_add_commented_lines(struct strbuf *out, const char *buf, size_t size, char comment_line_char)
 {
 	static char prefix1[3];
 	static char prefix2[2];
@@ -336,7 +335,7 @@ void strbuf_add_commented_lines(struct strbuf *out, const char *buf, size_t size
 	add_lines(out, prefix1, prefix2, buf, size);
 }
 
-void strbuf_commented_addf(struct strbuf *sb, const char *fmt, ...)
+void strbuf_commented_addf(struct strbuf *sb, char comment_line_char, const char *fmt, ...)
 {
 	va_list params;
 	struct strbuf buf = STRBUF_INIT;
@@ -346,7 +345,7 @@ void strbuf_commented_addf(struct strbuf *sb, const char *fmt, ...)
 	strbuf_vaddf(&buf, fmt, params);
 	va_end(params);
 
-	strbuf_add_commented_lines(sb, buf.buf, buf.len);
+	strbuf_add_commented_lines(sb, buf.buf, buf.len, comment_line_char);
 	if (incomplete_line)
 		sb->buf[--sb->len] = '\0';
 
@@ -983,7 +982,7 @@ static size_t cleanup(char *line, size_t len)
  * Enable skip_comments to skip every line starting with comment
  * character.
  */
-void strbuf_stripspace(struct strbuf *sb, int skip_comments)
+void strbuf_stripspace(struct strbuf *sb, int skip_comments, char comment_line_char)
 {
 	size_t empties = 0;
 	size_t i, j, len, newlen;

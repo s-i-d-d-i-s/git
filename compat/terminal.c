@@ -4,6 +4,7 @@
 #include "sigchain.h"
 #include "strbuf.h"
 #include "run-command.h"
+#include "str.h"
 #include "string-list.h"
 #include "hashmap.h"
 #include "wrapper.h"

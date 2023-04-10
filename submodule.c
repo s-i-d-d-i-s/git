@@ -30,6 +30,7 @@
 #include "commit-reach.h"
 #include "setup.h"
 #include "shallow.h"
+#include "str.h"
 #include "trace2.h"
 
 static int config_update_recurse_submodules = RECURSE_SUBMODULES_OFF;

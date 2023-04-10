@@ -12,6 +12,7 @@
 #include "tempfile.h"
 #include "alias.h"
 #include "wrapper.h"
+#include "str.h"
 
 static int git_gpg_config(const char *, const char *, void *);
 

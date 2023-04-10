@@ -14,6 +14,7 @@
 #include "list-objects.h"
 #include "setup.h"
 #include "sigchain.h"
+#include "str.h"
 #include "strvec.h"
 #include "packfile.h"
 #include "object-store.h"

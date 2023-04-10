@@ -11,6 +11,7 @@
 #include "hex.h"
 #include "packfile.h"
 #include "wrapper.h"
+#include "str.h"
 
 const char *tag_type = "tag";
 

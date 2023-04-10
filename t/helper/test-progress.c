@@ -21,6 +21,7 @@
 #include "test-tool.h"
 #include "parse-options.h"
 #include "progress.h"
+#include "str.h"
 #include "strbuf.h"
 #include "string-list.h"
 

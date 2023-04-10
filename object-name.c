@@ -19,6 +19,7 @@
 #include "repository.h"
 #include "setup.h"
 #include "submodule.h"
+#include "str.h"
 #include "midx.h"
 #include "commit-reach.h"
 #include "date.h"

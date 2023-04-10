@@ -4,6 +4,7 @@
 #include <sddl.h>
 #include <conio.h>
 #include <wchar.h>
+#include "../str.h"
 #include "../strbuf.h"
 #include "../run-command.h"
 #include "../cache.h"

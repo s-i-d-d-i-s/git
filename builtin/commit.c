@@ -26,6 +26,7 @@
 #include "hook.h"
 #include "refs.h"
 #include "log-tree.h"
+#include "str.h"
 #include "strbuf.h"
 #include "utf8.h"
 #include "object-name.h"

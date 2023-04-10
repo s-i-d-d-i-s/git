@@ -1,6 +1,7 @@
 #include "git-compat-util.h"
 #include "config.h"
 #include "column.h"
+#include "str.h"
 #include "string-list.h"
 #include "pager.h"
 #include "parse-options.h"

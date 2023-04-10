@@ -8,6 +8,7 @@
 #include "gettext.h"
 #include "help.h"
 #include "command-list.h"
+#include "str.h"
 #include "string-list.h"
 #include "column.h"
 #include "version.h"

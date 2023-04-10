@@ -24,6 +24,7 @@
 #include "ewah/ewok.h"
 #include "fsmonitor.h"
 #include "setup.h"
+#include "str.h"
 #include "submodule-config.h"
 #include "symlinks.h"
 #include "trace2.h"

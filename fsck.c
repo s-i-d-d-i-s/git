@@ -18,6 +18,7 @@
 #include "oidset.h"
 #include "packfile.h"
 #include "submodule-config.h"
+#include "str.h"
 #include "config.h"
 #include "credential.h"
 #include "help.h"

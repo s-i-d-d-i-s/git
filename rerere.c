@@ -17,6 +17,7 @@
 #include "object-file.h"
 #include "object-store.h"
 #include "hash-lookup.h"
+#include "str.h"
 #include "strmap.h"
 #include "wrapper.h"
 #include "write.h"

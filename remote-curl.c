@@ -6,6 +6,7 @@
 #include "hex.h"
 #include "remote.h"
 #include "connect.h"
+#include "str.h"
 #include "strbuf.h"
 #include "walker.h"
 #include "http.h"

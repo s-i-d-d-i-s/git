@@ -12,6 +12,7 @@
 #include "quote.h"
 #include "help.h"
 #include "wrapper.h"
+#include "str.h"
 
 static int grep_source_load(struct grep_source *gs);
 static int grep_source_is_binary(struct grep_source *gs,

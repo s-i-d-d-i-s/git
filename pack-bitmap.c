@@ -3,6 +3,7 @@
 #include "commit.h"
 #include "gettext.h"
 #include "hex.h"
+#include "str.h"
 #include "strbuf.h"
 #include "tag.h"
 #include "diff.h"

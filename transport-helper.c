@@ -10,6 +10,7 @@
 #include "object-name.h"
 #include "revision.h"
 #include "remote.h"
+#include "str.h"
 #include "string-list.h"
 #include "thread-utils.h"
 #include "sigchain.h"

@@ -26,6 +26,7 @@
 #include "revision.h"
 #include "run-command.h"
 #include "setup.h"
+#include "str.h"
 #include "submodule.h"
 #include "submodule-config.h"
 #include "symlinks.h"

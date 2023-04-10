@@ -31,6 +31,7 @@
 #include "apply.h"
 #include "entry.h"
 #include "setup.h"
+#include "str.h"
 #include "symlinks.h"
 #include "ws.h"
 #include "wrapper.h"

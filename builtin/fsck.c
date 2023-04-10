@@ -26,6 +26,7 @@
 #include "resolve-undo.h"
 #include "run-command.h"
 #include "worktree.h"
+#include "str.h"
 
 #define REACHABLE 0x0001
 #define SEEN      0x0002

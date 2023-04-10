@@ -16,6 +16,7 @@
 #include "parse-options.h"
 #include "repository.h"
 #include "setup.h"
+#include "str.h"
 #include "string-list.h"
 #include "write.h"
 #include "quote.h"

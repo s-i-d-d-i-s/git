@@ -5,6 +5,7 @@
 #include "worktree.h"
 #include "object-store.h"
 #include "repository.h"
+#include "str.h"
 
 struct flag_definition {
 	const char *name;

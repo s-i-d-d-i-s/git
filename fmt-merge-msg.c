@@ -10,6 +10,7 @@
 #include "hex.h"
 #include "revision.h"
 #include "tag.h"
+#include "str.h"
 #include "string-list.h"
 #include "branch.h"
 #include "fmt-merge-msg.h"

@@ -20,6 +20,7 @@
 #include "log-tree.h"
 #include "revision.h"
 #include "decorate.h"
+#include "str.h"
 #include "string-list.h"
 #include "utf8.h"
 #include "parse-options.h"

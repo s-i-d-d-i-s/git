@@ -26,6 +26,7 @@
 #include "object-name.h"
 #include "resolve-undo.h"
 #include "run-command.h"
+#include "str.h"
 #include "strbuf.h"
 #include "trace2.h"
 #include "varint.h"

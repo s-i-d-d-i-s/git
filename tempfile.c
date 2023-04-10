@@ -48,6 +48,7 @@
 #include "tempfile.h"
 #include "sigchain.h"
 #include "wrapper.h"
+#include "str.h"
 
 static VOLATILE_LIST_HEAD(tempfile_list);
 

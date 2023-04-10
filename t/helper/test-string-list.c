@@ -1,4 +1,5 @@
 #include "test-tool.h"
+#include "str.h"
 #include "strbuf.h"
 #include "string-list.h"
 

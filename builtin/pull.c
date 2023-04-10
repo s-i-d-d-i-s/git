@@ -23,6 +23,7 @@
 #include "refs.h"
 #include "refspec.h"
 #include "revision.h"
+#include "str.h"
 #include "submodule.h"
 #include "submodule-config.h"
 #include "tempfile.h"

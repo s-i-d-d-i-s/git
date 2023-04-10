@@ -3,6 +3,7 @@
 #include "config.h"
 #include "environment.h"
 #include "gettext.h"
+#include "str.h"
 #include "string-list.h"
 #include "run-command.h"
 #include "commit.h"

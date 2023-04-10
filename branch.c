@@ -15,6 +15,7 @@
 #include "worktree.h"
 #include "submodule-config.h"
 #include "run-command.h"
+#include "str.h"
 #include "strmap.h"
 #include "write.h"
 

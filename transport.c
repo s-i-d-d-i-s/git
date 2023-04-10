@@ -20,6 +20,7 @@
 #include "branch.h"
 #include "url.h"
 #include "submodule.h"
+#include "str.h"
 #include "string-list.h"
 #include "oid-array.h"
 #include "sigchain.h"

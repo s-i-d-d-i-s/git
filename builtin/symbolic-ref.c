@@ -4,6 +4,7 @@
 #include "gettext.h"
 #include "refs.h"
 #include "parse-options.h"
+#include "str.h"
 
 static const char * const git_symbolic_ref_usage[] = {
 	N_("git symbolic-ref [-m <reason>] <name> <ref>"),

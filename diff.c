@@ -27,6 +27,7 @@
 #include "hashmap.h"
 #include "mem-pool.h"
 #include "ll-merge.h"
+#include "str.h"
 #include "string-list.h"
 #include "strvec.h"
 #include "graph.h"

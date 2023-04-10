@@ -8,6 +8,7 @@
 #include "hex.h"
 #include "object.h"
 #include "object-store.h"
+#include "str.h"
 #include "string-list.h"
 #include "strbuf.h"
 

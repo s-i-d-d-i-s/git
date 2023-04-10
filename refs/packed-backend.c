@@ -10,6 +10,7 @@
 #include "../lockfile.h"
 #include "../chdir-notify.h"
 #include "../repository.h"
+#include "../str.h"
 #include "../wrapper.h"
 #include "../write.h"
 

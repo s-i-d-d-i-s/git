@@ -22,6 +22,7 @@
 #include "patch-ids.h"
 #include "decorate.h"
 #include "log-tree.h"
+#include "str.h"
 #include "string-list.h"
 #include "line-log.h"
 #include "mailmap.h"

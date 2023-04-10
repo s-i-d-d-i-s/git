@@ -16,6 +16,7 @@
 #include "oid-array.h"
 #include "commit.h"
 #include "builtin.h"
+#include "str.h"
 #include "string-list.h"
 #include "remote.h"
 #include "transport.h"

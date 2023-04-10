@@ -25,6 +25,7 @@
 #include "pack-revindex.h"
 #include "promisor-remote.h"
 #include "wrapper.h"
+#include "str.h"
 
 char *odb_pack_name(struct strbuf *buf,
 		    const unsigned char *hash,

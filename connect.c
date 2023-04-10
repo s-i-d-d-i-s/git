@@ -14,6 +14,7 @@
 #include "oid-array.h"
 #include "transport.h"
 #include "trace2.h"
+#include "str.h"
 #include "strbuf.h"
 #include "version.h"
 #include "write.h"

@@ -8,6 +8,7 @@
 #include "date.h"
 #include "gettext.h"
 #include "pager.h"
+#include "str.h"
 #include "strbuf.h"
 
 /*

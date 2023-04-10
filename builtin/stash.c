@@ -13,6 +13,7 @@
 #include "unpack-trees.h"
 #include "merge-recursive.h"
 #include "merge-ort-wrappers.h"
+#include "str.h"
 #include "strvec.h"
 #include "run-command.h"
 #include "dir.h"

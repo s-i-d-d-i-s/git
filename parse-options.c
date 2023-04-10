@@ -5,6 +5,7 @@
 #include "commit.h"
 #include "color.h"
 #include "gettext.h"
+#include "str.h"
 #include "utf8.h"
 #include "write.h"
 

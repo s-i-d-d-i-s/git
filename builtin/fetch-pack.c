@@ -9,6 +9,7 @@
 #include "connect.h"
 #include "oid-array.h"
 #include "protocol.h"
+#include "str.h"
 
 static const char fetch_pack_usage[] =
 "git fetch-pack [--all] [--stdin] [--quiet | -q] [--keep | -k] [--thin] "

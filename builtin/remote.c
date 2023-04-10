@@ -4,6 +4,7 @@
 #include "parse-options.h"
 #include "transport.h"
 #include "remote.h"
+#include "str.h"
 #include "string-list.h"
 #include "strbuf.h"
 #include "run-command.h"

@@ -29,6 +29,7 @@
 #include "unpack-trees.h"
 #include "cache-tree.h"
 #include "setup.h"
+#include "str.h"
 #include "submodule.h"
 #include "submodule-config.h"
 #include "trace.h"

@@ -1,4 +1,5 @@
 #include "git-compat-util.h"
+#include "str.h"
 #include "strbuf.h"
 #include "utf8.h"
 

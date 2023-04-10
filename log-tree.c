@@ -23,6 +23,7 @@
 #include "line-log.h"
 #include "help.h"
 #include "range-diff.h"
+#include "str.h"
 #include "strmap.h"
 #include "write.h"
 

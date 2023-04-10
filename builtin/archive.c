@@ -11,6 +11,7 @@
 #include "pkt-line.h"
 #include "repository.h"
 #include "sideband.h"
+#include "str.h"
 
 static void create_output_file(const char *output_file)
 {

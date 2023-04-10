@@ -18,6 +18,7 @@
 #include "../dir.h"
 #include "../chdir-notify.h"
 #include "../setup.h"
+#include "../str.h"
 #include "../worktree.h"
 #include "../wrapper.h"
 #include "../write.h"

@@ -28,6 +28,7 @@
 #include "object-store.h"
 #include "repository.h"
 #include "revision.h"
+#include "str.h"
 #include "string-list.h"
 #include "submodule-config.h"
 #include "submodule.h"

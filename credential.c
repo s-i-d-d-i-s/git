@@ -8,6 +8,7 @@
 #include "url.h"
 #include "prompt.h"
 #include "sigchain.h"
+#include "str.h"
 #include "strbuf.h"
 #include "urlmatch.h"
 #include "git-compat-util.h"

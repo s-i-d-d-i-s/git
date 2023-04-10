@@ -21,6 +21,7 @@
 #include "parse-options.h"
 #include "trace2.h"
 #include "write.h"
+#include "str.h"
 
 int option_parse_push_signed(const struct option *opt,
 			     const char *arg, int unset)

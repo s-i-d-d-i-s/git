@@ -7,6 +7,7 @@
 #include "cache.h"
 #include "builtin.h"
 #include "gettext.h"
+#include "str.h"
 #include "string-list.h"
 #include "strbuf.h"
 

@@ -6,6 +6,7 @@
 #include "fsmonitor.h"
 #include "fsmonitor-ipc.h"
 #include "run-command.h"
+#include "str.h"
 #include "strbuf.h"
 #include "trace2.h"
 

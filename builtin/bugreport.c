@@ -3,6 +3,7 @@
 #include "editor.h"
 #include "gettext.h"
 #include "parse-options.h"
+#include "str.h"
 #include "strbuf.h"
 #include "help.h"
 #include "compat/compiler.h"

@@ -30,6 +30,7 @@
 #include "delta-islands.h"
 #include "reachable.h"
 #include "oid-array.h"
+#include "str.h"
 #include "strvec.h"
 #include "list.h"
 #include "packfile.h"

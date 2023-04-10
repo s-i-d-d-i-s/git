@@ -6,6 +6,7 @@
 #include "repository.h"
 #include "refs.h"
 #include "setup.h"
+#include "str.h"
 #include "strbuf.h"
 #include "worktree.h"
 #include "dir.h"

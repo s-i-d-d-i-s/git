@@ -4,6 +4,7 @@
 #include "gettext.h"
 #include "hex.h"
 #include "run-command.h"
+#include "str.h"
 #include "trace.h"
 #include "wrapper.h"
 #include "write.h"

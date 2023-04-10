@@ -22,6 +22,7 @@
 #include "tag.h"
 #include "submodule.h"
 #include "worktree.h"
+#include "str.h"
 #include "strvec.h"
 #include "repository.h"
 #include "setup.h"

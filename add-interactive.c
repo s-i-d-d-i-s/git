@@ -7,6 +7,7 @@
 #include "hex.h"
 #include "revision.h"
 #include "refs.h"
+#include "str.h"
 #include "string-list.h"
 #include "lockfile.h"
 #include "dir.h"

@@ -5,6 +5,7 @@
 #include "gettext.h"
 #include "hex.h"
 #include "parse-options.h"
+#include "str.h"
 
 static void flush_current_id(int patchlen, struct object_id *id, struct object_id *result)
 {

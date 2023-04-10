@@ -14,6 +14,7 @@
 #include "builtin.h"
 #include "gettext.h"
 #include "object-name.h"
+#include "str.h"
 #include "strbuf.h"
 #include "tree.h"
 #include "cache-tree.h"

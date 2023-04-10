@@ -21,6 +21,7 @@
 #include "send-pack.h"
 #include "trace2.h"
 #include "color.h"
+#include "str.h"
 
 static const char * const push_usage[] = {
 	N_("git push [<options>] [<repository> [<refspec>...]]"),

@@ -8,6 +8,7 @@
 #include "blob.h"
 #include "tree.h"
 #include "utf8.h"
+#include "str.h"
 #include "strbuf.h"
 #include "tree-walk.h"
 #include "string-list.h"

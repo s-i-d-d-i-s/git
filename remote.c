@@ -17,6 +17,7 @@
 #include "dir.h"
 #include "tag.h"
 #include "setup.h"
+#include "str.h"
 #include "string-list.h"
 #include "strvec.h"
 #include "commit-reach.h"

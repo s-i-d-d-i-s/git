@@ -11,6 +11,7 @@
 #include "pkt-line.h"
 #include "config.h"
 #include "remote.h"
+#include "str.h"
 
 static struct {
 	enum bundle_list_heuristic heuristic;

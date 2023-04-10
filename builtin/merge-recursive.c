@@ -7,6 +7,7 @@
 #include "merge-recursive.h"
 #include "object-name.h"
 #include "repository.h"
+#include "str.h"
 #include "xdiff-interface.h"
 
 static const char builtin_merge_recursive_usage[] =

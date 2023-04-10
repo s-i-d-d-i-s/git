@@ -1,6 +1,7 @@
 #include "git-compat-util.h"
 #include "abspath.h"
 #include "sigchain.h"
+#include "str.h"
 #include "strbuf.h"
 #include "trace2/tr2_dst.h"
 #include "trace2/tr2_sid.h"

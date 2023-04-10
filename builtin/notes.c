@@ -23,6 +23,7 @@
 #include "exec-cmd.h"
 #include "run-command.h"
 #include "parse-options.h"
+#include "str.h"
 #include "string-list.h"
 #include "notes-merge.h"
 #include "notes-utils.h"

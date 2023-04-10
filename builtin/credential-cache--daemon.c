@@ -4,6 +4,7 @@
 #include "gettext.h"
 #include "object-file.h"
 #include "parse-options.h"
+#include "str.h"
 
 #ifndef NO_UNIX_SOCKETS
 

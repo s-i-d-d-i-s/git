@@ -15,6 +15,7 @@
 #include "help.h"
 #include "alias.h"
 #include "setup.h"
+#include "str.h"
 
 #ifndef DEFAULT_HELP_FORMAT
 #define DEFAULT_HELP_FORMAT "man"

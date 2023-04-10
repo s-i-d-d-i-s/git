@@ -38,6 +38,7 @@
 #include "prompt.h"
 #include "mailinfo.h"
 #include "apply.h"
+#include "str.h"
 #include "string-list.h"
 #include "packfile.h"
 #include "pager.h"

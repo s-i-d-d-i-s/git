@@ -20,6 +20,7 @@
 #include "branch.h"
 #include "diff.h"
 #include "revision.h"
+#include "str.h"
 #include "string-list.h"
 #include "column.h"
 #include "utf8.h"

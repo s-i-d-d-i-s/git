@@ -2,6 +2,7 @@
 #include "cache.h"
 #include "config.h"
 #include "gettext.h"
+#include "str.h"
 #include "strbuf.h"
 #include "parse-options.h"
 #include "string-list.h"

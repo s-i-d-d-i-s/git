@@ -27,6 +27,7 @@
 #include "promisor-remote.h"
 #include "mailmap.h"
 #include "write.h"
+#include "str.h"
 
 enum batch_mode {
 	BATCH_MODE_CONTENTS,

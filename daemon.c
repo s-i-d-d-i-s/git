@@ -8,6 +8,7 @@
 #include "protocol.h"
 #include "run-command.h"
 #include "setup.h"
+#include "str.h"
 #include "strbuf.h"
 #include "string-list.h"
 #include "wrapper.h"

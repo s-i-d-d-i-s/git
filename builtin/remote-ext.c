@@ -2,6 +2,7 @@
 #include "transport.h"
 #include "run-command.h"
 #include "pkt-line.h"
+#include "str.h"
 
 static const char usage_msg[] =
 	"git remote-ext <remote> <url>";

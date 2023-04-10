@@ -10,6 +10,7 @@
 #include "replace-object.h"
 #include "setup.h"
 #include "shallow.h"
+#include "str.h"
 #include "trace.h"
 #include "trace2.h"
 #include "write.h"

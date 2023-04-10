@@ -4,6 +4,7 @@
 #include "config.h"
 #include "gettext.h"
 #include "revision.h"
+#include "str.h"
 #include "strvec.h"
 #include "list-objects.h"
 #include "list-objects-filter.h"

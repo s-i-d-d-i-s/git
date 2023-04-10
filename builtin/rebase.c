@@ -12,6 +12,7 @@
 #include "hex.h"
 #include "run-command.h"
 #include "exec-cmd.h"
+#include "str.h"
 #include "strvec.h"
 #include "dir.h"
 #include "packfile.h"

@@ -1,6 +1,7 @@
 #include "git-compat-util.h"
 #include "gettext.h"
 #include "hex.h"
+#include "str.h"
 #include "strbuf.h"
 #include "urlmatch.h"
 

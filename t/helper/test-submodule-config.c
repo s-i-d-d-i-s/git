@@ -3,6 +3,7 @@
 #include "object-name.h"
 #include "repository.h"
 #include "setup.h"
+#include "str.h"
 #include "submodule-config.h"
 #include "submodule.h"
 

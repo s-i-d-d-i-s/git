@@ -1,5 +1,6 @@
 #include "test-tool.h"
 #include "git-compat-util.h"
+#include "str.h"
 #include "strbuf.h"
 #include "iterator.h"
 #include "dir-iterator.h"

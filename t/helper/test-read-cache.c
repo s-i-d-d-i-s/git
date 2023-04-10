@@ -5,6 +5,7 @@
 #include "repository.h"
 #include "setup.h"
 #include "wrapper.h"
+#include "str.h"
 
 int cmd__read_cache(int argc, const char **argv)
 {

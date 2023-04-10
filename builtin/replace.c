@@ -23,6 +23,7 @@
 #include "object-store.h"
 #include "replace-object.h"
 #include "repository.h"
+#include "str.h"
 #include "tag.h"
 #include "write.h"
 

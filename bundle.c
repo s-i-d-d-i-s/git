@@ -13,6 +13,7 @@
 #include "list-objects.h"
 #include "run-command.h"
 #include "refs.h"
+#include "str.h"
 #include "strvec.h"
 #include "list-objects-filter-options.h"
 #include "connected.h"

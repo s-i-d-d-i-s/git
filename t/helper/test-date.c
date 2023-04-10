@@ -1,6 +1,7 @@
 #include "test-tool.h"
 #include "date.h"
 #include "trace.h"
+#include "str.h"
 
 static const char *usage_msg = "\n"
 "  test-tool date relative [time_t]...\n"

@@ -27,6 +27,7 @@
 #include "symlinks.h"
 #include "fsmonitor.h"
 #include "write.h"
+#include "str.h"
 
 /*
  * Default to not allowing changes to the list of files. The

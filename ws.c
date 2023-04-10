@@ -5,6 +5,7 @@
  */
 #include "git-compat-util.h"
 #include "attr.h"
+#include "str.h"
 #include "strbuf.h"
 #include "ws.h"
 

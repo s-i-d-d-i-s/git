@@ -4,6 +4,7 @@
 
 #include "test-tool.h"
 #include "gettext.h"
+#include "str.h"
 #include "strbuf.h"
 #include "simple-ipc.h"
 #include "parse-options.h"

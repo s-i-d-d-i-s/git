@@ -27,6 +27,7 @@
 #include "commit-reach.h"
 #include "worktree.h"
 #include "hashmap.h"
+#include "str.h"
 #include "strvec.h"
 
 static struct ref_msg {

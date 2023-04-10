@@ -1,6 +1,7 @@
 #include "git-compat-util.h"
 #include "quote.h"
 #include "exec-cmd.h"
+#include "str.h"
 #include "strbuf.h"
 #include "run-command.h"
 #include "alias.h"

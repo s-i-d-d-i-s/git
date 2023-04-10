@@ -30,6 +30,7 @@
 #include "run-command.h"
 #include "shortlog.h"
 #include "remote.h"
+#include "str.h"
 #include "string-list.h"
 #include "parse-options.h"
 #include "line-log.h"

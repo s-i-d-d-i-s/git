@@ -8,6 +8,7 @@
 #include "sideband.h"
 #include "repository.h"
 #include "run-command.h"
+#include "str.h"
 #include "strvec.h"
 
 static const char upload_archive_usage[] =

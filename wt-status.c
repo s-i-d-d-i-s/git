@@ -19,6 +19,7 @@
 #include "submodule.h"
 #include "column.h"
 #include "setup.h"
+#include "str.h"
 #include "strbuf.h"
 #include "trace.h"
 #include "trace2.h"

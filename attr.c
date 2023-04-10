@@ -19,6 +19,7 @@
 #include "revision.h"
 #include "object-store.h"
 #include "setup.h"
+#include "str.h"
 #include "thread-utils.h"
 #include "write.h"
 

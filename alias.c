@@ -3,6 +3,7 @@
 #include "alloc.h"
 #include "config.h"
 #include "gettext.h"
+#include "str.h"
 #include "string-list.h"
 
 struct config_alias_data {

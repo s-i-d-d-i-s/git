@@ -5,6 +5,7 @@
 #include "sub-process.h"
 #include "sigchain.h"
 #include "pkt-line.h"
+#include "str.h"
 
 int cmd2process_cmp(const void *cmp_data UNUSED,
 		    const struct hashmap_entry *eptr,

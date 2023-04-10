@@ -16,6 +16,7 @@
 #include "userdiff.h"
 #include "apply.h"
 #include "revision.h"
+#include "str.h"
 
 struct patch_util {
 	/* For the search for an exact match */

@@ -11,6 +11,7 @@
 #include "tag.h"
 #include "exec-cmd.h"
 #include "run-command.h"
+#include "str.h"
 #include "string-list.h"
 #include "url.h"
 #include "strvec.h"

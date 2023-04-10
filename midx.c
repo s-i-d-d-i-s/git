@@ -21,6 +21,7 @@
 #include "pack-bitmap.h"
 #include "refs.h"
 #include "revision.h"
+#include "str.h"
 #include "list-objects.h"
 
 #define MIDX_SIGNATURE 0x4d494458 /* "MIDX" */

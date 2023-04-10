@@ -21,6 +21,7 @@
 #include "connect.h"
 #include "sigchain.h"
 #include "version.h"
+#include "str.h"
 #include "string-list.h"
 #include "strvec.h"
 #include "trace2.h"

@@ -10,6 +10,7 @@
 
 #include "test-tool.h"
 #include "run-command.h"
+#include "str.h"
 #include "strvec.h"
 #include "strbuf.h"
 #include "parse-options.h"

@@ -3,6 +3,7 @@
 #include "gettext.h"
 #include "hex.h"
 #include "utf8.h"
+#include "str.h"
 #include "strbuf.h"
 #include "mailinfo.h"
 

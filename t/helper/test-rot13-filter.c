@@ -38,6 +38,7 @@
 
 #include "test-tool.h"
 #include "pkt-line.h"
+#include "str.h"
 #include "string-list.h"
 #include "strmap.h"
 #include "parse-options.h"

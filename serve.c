@@ -8,6 +8,7 @@
 #include "serve.h"
 #include "upload-pack.h"
 #include "bundle-uri.h"
+#include "str.h"
 #include "trace2.h"
 
 static int advertise_sid = -1;

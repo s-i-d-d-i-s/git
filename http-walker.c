@@ -8,6 +8,7 @@
 #include "transport.h"
 #include "packfile.h"
 #include "object-store.h"
+#include "str.h"
 
 struct alt_base {
 	char *base;

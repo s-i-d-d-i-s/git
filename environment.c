@@ -18,6 +18,7 @@
 #include "refs.h"
 #include "fmt-merge-msg.h"
 #include "commit.h"
+#include "str.h"
 #include "strvec.h"
 #include "object-file.h"
 #include "object-store.h"

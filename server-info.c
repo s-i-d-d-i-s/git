@@ -12,6 +12,7 @@
 #include "object-file.h"
 #include "object-store.h"
 #include "server-info.h"
+#include "str.h"
 #include "strbuf.h"
 #include "wrapper.h"
 

@@ -7,6 +7,7 @@
 #include "refs.h"
 #include "builtin.h"
 #include "color.h"
+#include "str.h"
 #include "strvec.h"
 #include "object-name.h"
 #include "parse-options.h"

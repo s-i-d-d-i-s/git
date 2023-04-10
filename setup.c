@@ -7,6 +7,7 @@
 #include "config.h"
 #include "dir.h"
 #include "setup.h"
+#include "str.h"
 #include "string-list.h"
 #include "chdir-notify.h"
 #include "promisor-remote.h"

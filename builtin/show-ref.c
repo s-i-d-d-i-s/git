@@ -8,6 +8,7 @@
 #include "object-store.h"
 #include "object.h"
 #include "tag.h"
+#include "str.h"
 #include "string-list.h"
 #include "parse-options.h"
 

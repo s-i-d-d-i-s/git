@@ -7,6 +7,7 @@
 #include "gettext.h"
 #include "hex.h"
 #include "repository.h"
+#include "str.h"
 #include "strbuf.h"
 #include "string-list.h"
 #include "dir.h"

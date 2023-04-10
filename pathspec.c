@@ -7,6 +7,7 @@
 #include "pathspec.h"
 #include "attr.h"
 #include "repository.h"
+#include "str.h"
 #include "setup.h"
 #include "strvec.h"
 #include "symlinks.h"

@@ -15,6 +15,7 @@
 #include "khash.h"
 #include "pkt-line.h"
 #include "trace2.h"
+#include "str.h"
 
 static const char * const builtin_fsmonitor__daemon_usage[] = {
 	N_("git fsmonitor--daemon start [<options>]"),

@@ -14,6 +14,7 @@
 #include "log-tree.h"
 #include "bisect.h"
 #include "oid-array.h"
+#include "str.h"
 #include "strvec.h"
 #include "commit-slab.h"
 #include "commit-reach.h"

@@ -8,6 +8,7 @@
 #include "object-name.h"
 #include "strbuf.h"
 #include "run-command.h"
+#include "str.h"
 #include "strvec.h"
 #include "pathspec.h"
 #include "color.h"

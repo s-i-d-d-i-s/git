@@ -5,6 +5,7 @@
 #include "diff.h"
 #include "environment.h"
 #include "gettext.h"
+#include "str.h"
 #include "string-list.h"
 #include "revision.h"
 #include "utf8.h"

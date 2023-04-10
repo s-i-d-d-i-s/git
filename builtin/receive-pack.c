@@ -17,6 +17,7 @@
 #include "object.h"
 #include "remote.h"
 #include "connect.h"
+#include "str.h"
 #include "string-list.h"
 #include "oid-array.h"
 #include "connected.h"

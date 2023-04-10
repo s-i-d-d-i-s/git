@@ -11,6 +11,7 @@
 #include "date.h"
 #include "gettext.h"
 #include "mailmap.h"
+#include "str.h"
 #include "strbuf.h"
 
 static struct strbuf git_default_name = STRBUF_INIT;

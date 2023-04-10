@@ -44,6 +44,7 @@
 #include "fmt-merge-msg.h"
 #include "gpg-interface.h"
 #include "sequencer.h"
+#include "str.h"
 #include "string-list.h"
 #include "packfile.h"
 #include "tag.h"

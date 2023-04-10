@@ -5,6 +5,7 @@
 #include "gettext.h"
 #include "hex.h"
 #include "pager.h"
+#include "str.h"
 #include "strbuf.h"
 
 static int git_use_color_default = GIT_COLOR_AUTO;

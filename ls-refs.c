@@ -5,6 +5,7 @@
 #include "repository.h"
 #include "refs.h"
 #include "remote.h"
+#include "str.h"
 #include "strvec.h"
 #include "ls-refs.h"
 #include "pkt-line.h"

@@ -7,6 +7,7 @@
 #include "strvec.h"
 #include "symlinks.h"
 #include "thread-utils.h"
+#include "str.h"
 #include "strbuf.h"
 #include "string-list.h"
 #include "trace.h"

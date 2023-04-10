@@ -5,6 +5,7 @@
 #include "pkt-line.h"
 #include "setup.h"
 #include "sigchain.h"
+#include "str.h"
 
 static const char *proc_receive_usage[] = {
 	"test-tool proc-receive [<options>]",

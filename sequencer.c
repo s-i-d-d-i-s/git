@@ -28,6 +28,7 @@
 #include "merge-ort.h"
 #include "merge-ort-wrappers.h"
 #include "refs.h"
+#include "str.h"
 #include "strvec.h"
 #include "quote.h"
 #include "trailer.h"

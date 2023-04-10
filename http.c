@@ -16,6 +16,7 @@
 #include "transport.h"
 #include "packfile.h"
 #include "protocol.h"
+#include "str.h"
 #include "string-list.h"
 #include "object-file.h"
 #include "object-store.h"

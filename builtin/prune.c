@@ -15,6 +15,7 @@
 #include "object-name.h"
 #include "object-store.h"
 #include "shallow.h"
+#include "str.h"
 
 static const char * const prune_usage[] = {
 	N_("git prune [-n] [-v] [--progress] [--expire <time>] [--] [<head>...]"),

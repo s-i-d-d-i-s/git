@@ -4,6 +4,7 @@
 #include "color.h"
 #include "gettext.h"
 #include "help.h"
+#include "str.h"
 #include "string-list.h"
 
 static int advice_use_color = -1;

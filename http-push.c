@@ -1,4 +1,5 @@
 #include "git-compat-util.h"
+#include "main.h"
 #include "environment.h"
 #include "hex.h"
 #include "repository.h"

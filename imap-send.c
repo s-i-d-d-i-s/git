@@ -22,6 +22,7 @@
  */
 
 #include "git-compat-util.h"
+#include "main.h"
 #include "config.h"
 #include "credential.h"
 #include "exec-cmd.h"

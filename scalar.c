@@ -3,6 +3,7 @@
  */
 
 #include "git-compat-util.h"
+#include "main.h"
 #include "abspath.h"
 #include "gettext.h"
 #include "parse-options.h"

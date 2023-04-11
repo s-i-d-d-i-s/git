@@ -1,3 +1,4 @@
+#include "main.h"
 #include "builtin.h"
 #include "config.h"
 #include "environment.h"

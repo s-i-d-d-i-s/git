@@ -1,4 +1,5 @@
 #include "git-compat-util.h"
+#include "main.h"
 #include "config.h"
 #include "exec-cmd.h"
 #include "gettext.h"

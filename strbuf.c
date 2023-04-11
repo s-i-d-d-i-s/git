@@ -1,6 +1,5 @@
 #include "git-compat-util.h"
 #include "gettext.h"
-#include "hex.h"
 #include "refs.h"
 #include "strbuf.h"
 #include "string-list.h"
@@ -398,6 +397,22 @@ void strbuf_expand(struct strbuf *sb, const char *format, expand_fn_t fn,
 	}
 }
 
+const signed char strbuf_hexval_table[256];
+static unsigned int strbuf_hexval(unsigned char c)
+{
+	return strbuf_hexval_table[c];
+}
+
+/*
+ * Convert two consecutive hexadecimal digits into a char.  Return a
+ * negative value on error.  Don't run over the end of short strings.
+ */
+static int strbuf_hex2chr(const char *s)
+{
+	unsigned int val = strbuf_hexval(s[0]);
+	return (val & ~0xf) ? val : (val << 4) | strbuf_hexval(s[1]);
+}
+
 size_t strbuf_expand_literal_cb(struct strbuf *sb,
 				const char *placeholder,
 				void *context UNUSED)
@@ -410,7 +425,7 @@ size_t strbuf_expand_literal_cb(struct strbuf *sb,
 		return 1;
 	case 'x':
 		/* %x00 == NUL, %x0a == LF, etc. */
-		ch = hex2chr(placeholder + 1);
+		ch = strbuf_hex2chr(placeholder + 1);
 		if (ch < 0)
 			return 0;
 		strbuf_addch(sb, ch);

@@ -3833,3 +3833,52 @@ $(FUZZ_PROGRAMS): all
 		$(XDIFF_OBJS) $(EXTLIBS) git.o $@.o $(LIB_FUZZING_ENGINE) -o $@
 
 fuzz-all: $(FUZZ_PROGRAMS)
+
+# VERY NON-IDEAL OF BUILDING BUT IT WORKS
+# I intend to clean this up to match how the rest of git uilds
+
+GIT_STD_LIB_OBJS += abspath.o
+GIT_STD_LIB_OBJS += strlcpy.o
+GIT_STD_LIB_OBJS += str.o
+GIT_STD_LIB_OBJS += strbuf.o
+GIT_STD_LIB_OBJS += wrapper.o
+GIT_STD_LIB_OBJS += usage.o
+GIT_STD_LIB_OBJS += utf8.o
+GIT_STD_LIB_OBJS += date.o
+GIT_STD_LIB_OBJS += trace2_stub.o
+GIT_STD_LIB_OBJS += parse.o
+
+GIT_STD_LIB_OBJS1 += abspath.c
+GIT_STD_LIB_OBJS1 += compat/strlcpy.c
+GIT_STD_LIB_OBJS1 += str.c
+GIT_STD_LIB_OBJS1 += strbuf.c
+GIT_STD_LIB_OBJS1 += wrapper.c
+GIT_STD_LIB_OBJS1 += usage.c
+GIT_STD_LIB_OBJS1 += utf8.c
+GIT_STD_LIB_OBJS1 += date.c
+GIT_STD_LIB_OBJS1 += trace2_stub.c
+GIT_STD_LIB_OBJS1 += parse.c
+
+.PHONY: git-std-lib-objs
+git-std-lib-objs: $(GIT_STD_LIB_OBJS)
+
+tests_tap_libtap_a_SOURCES = t/tap/basic.c t/tap/basic.h \
+	t/tap/macros.h
+
+tests_tap_libraries = -l:libtap.a -l:gitstdlib.a
+
+### TAP BUILD STEPS
+# compile t/tap files into an object file
+# create tap library from object file
+# repeat for other libraries
+# compile test file into an executable
+# run test runner on
+.PHONY: tap
+tap:
+	cc -It -c $(tests_tap_libtap_a_SOURCES)
+	ar -rc libtap.a basic.o
+	cc -c $(GIT_STD_LIB_OBJS1) -DNO_STRLCPY -DGIT_STD_LIB
+	ar -rc gitstdlib.a $(GIT_STD_LIB_OBJS)
+	cc -It -o t/strbuf/strbuf-t t/strbuf_test.c -L. $(tests_tap_libraries)
+	cc -o t/runtests t/runtests.c
+	cd t && ./runtests -l TESTS

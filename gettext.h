@@ -57,7 +57,9 @@ const char *Q_(const char *msgid, const char *plu, unsigned long n)
 /* Mark msgid for translation but do not translate it. */
 #define N_(msgid) msgid
 
+#ifndef GIT_STD_LIB
 const char *get_preferred_languages(void);
 int is_utf8_locale(void);
+#endif
 
 #endif

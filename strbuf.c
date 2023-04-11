@@ -6,6 +6,7 @@
 #include "date.h"
 #include "wrapper.h"
 
+const unsigned char sane_ctype[256];
 /*
  * Used as the default ->buf value, so that people can always assume
  * buf is non NULL and ->buf is NUL terminated even for a freshly

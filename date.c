@@ -7,7 +7,7 @@
 #include "git-compat-util.h"
 #include "date.h"
 #include "gettext.h"
-#include "pager.h"
+#include "parse.h"
 #include "str.h"
 #include "strbuf.h"
 
@@ -1010,7 +1010,7 @@ void parse_date_format(const char *format, struct date_mode *mode)
 
 	/* "auto:foo" is "if tty/pager, then foo, otherwise normal" */
 	if (skip_prefix(format, "auto:", &p)) {
-		if (isatty(1) || pager_in_use())
+		if (isatty(1) || git_env_bool("GIT_PAGER_IN_USE", 0))
 			format = p;
 		else
 			format = "default";

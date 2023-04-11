@@ -451,9 +451,11 @@ static inline int noop_core_config(const char *var UNUSED,
 #define platform_core_config noop_core_config
 #endif
 
+#ifndef GIT_STD_LIB
 int lstat_cache_aware_rmdir(const char *path);
 #if !defined(__MINGW32__) && !defined(_MSC_VER)
 #define rmdir lstat_cache_aware_rmdir
+#endif
 #endif
 
 #ifndef has_dos_drive_prefix

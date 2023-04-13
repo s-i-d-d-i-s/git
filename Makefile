@@ -3847,6 +3847,8 @@ GIT_STD_LIB_OBJS += utf8.o
 GIT_STD_LIB_OBJS += date.o
 GIT_STD_LIB_OBJS += trace2_stub.o
 GIT_STD_LIB_OBJS += parse.o
+GIT_STD_LIB_OBJS += hashmap.o
+GIT_STD_LIB_OBJS += object-file.o
 
 GIT_STD_LIB_OBJS1 += abspath.c
 GIT_STD_LIB_OBJS1 += compat/strlcpy.c
@@ -3858,6 +3860,8 @@ GIT_STD_LIB_OBJS1 += utf8.c
 GIT_STD_LIB_OBJS1 += date.c
 GIT_STD_LIB_OBJS1 += trace2_stub.c
 GIT_STD_LIB_OBJS1 += parse.c
+GIT_STD_LIB_OBJS1 += hashmap.c
+GIT_STD_LIB_OBJS1 += object-file.c
 
 .PHONY: git-std-lib-objs
 git-std-lib-objs: $(GIT_STD_LIB_OBJS)
@@ -3880,5 +3884,6 @@ tap:
 	cc -c $(GIT_STD_LIB_OBJS1) -DNO_STRLCPY -DGIT_STD_LIB
 	ar -rc gitstdlib.a $(GIT_STD_LIB_OBJS)
 	cc -It -o t/strbuf/strbuf-t t/strbuf_test.c -L. $(tests_tap_libraries)
+	cc -It -o t/hashmap/hashmap-t t/hashmap_test.c -L. $(tests_tap_libraries) 
 	cc -o t/runtests t/runtests.c
 	cd t && ./runtests -l TESTS

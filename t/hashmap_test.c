@@ -138,9 +138,48 @@ int allocate_table_testGrowAt(){
 	return 0;
 }
 
+
+int hashmap_add_testAdd1Element(){
+	struct hashmap map;
+	unsigned int size = 6;
+	hashmap_init(&map,NULL,NULL,0);
+	
+	struct hashmap_entry e1;
+	hashmap_add(&map,&e1);
+	int old_size =  map.private_size;	
+	
+	hashmap_add(&map,&e1);
+	int new_size = map.private_size;
+
+	if(new_size == old_size+1){
+		return 1;
+	}
+	return 0;
+}
+
+int hashmap_add_testAdd2Element(){
+	struct hashmap map;
+	unsigned int size = 6;
+	hashmap_init(&map,NULL,NULL,0);
+	
+	struct hashmap_entry e1;
+	struct hashmap_entry e2;
+	hashmap_add(&map,&e1);
+	hashmap_add(&map,&e2);
+	int old_size =  map.private_size;	
+	
+	hashmap_add(&map,&e1);
+	int new_size = map.private_size;
+	
+	if(new_size == old_size+1){
+		return 1;
+	}
+	return 0;
+}
+
 int main(void)
 {
-	plan(12);
+	plan(14);
 
 	ok(strhash_testHashValue_string(), "strhash with string argument");
 	ok(strhash_testHashValue_emptyString(),
@@ -162,5 +201,8 @@ int main(void)
 
 	ok(allocate_table_testTableSize(), "allocated a new hashmap and test table size");
 	ok(allocate_table_testTableSize(), "allocated a new hashmap and test grow at");
+
+	ok(hashmap_add_testAdd1Element(), "added 1 new element to hashmap");
+	ok(hashmap_add_testAdd2Element(), "added 2 new element to hashmap");
 	return 0;
 }

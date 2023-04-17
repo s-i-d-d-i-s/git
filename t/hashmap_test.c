@@ -116,62 +116,45 @@ int memihash_cont_testHashValue_emptyString()
 	return 0;
 }
 
-int allocate_table_testTableSize(){
+int allocate_table_testTableSize()
+{
 	struct hashmap map;
 	unsigned int size = 6;
-	alloc_table(&map,size);
+	alloc_table(&map, size);
 	int expected_tablesize = 6;
-	if(map.tablesize == expected_tablesize){
+	if (map.tablesize == expected_tablesize) {
 		return 1;
 	}
 	return 0;
 }
 
-int allocate_table_testGrowAt(){
+int allocate_table_testGrowAt()
+{
 	struct hashmap map;
 	unsigned int size = 6;
-	alloc_table(&map,size);
+	alloc_table(&map, size);
 	int expected_grow_at = 4;
-	if(map.grow_at == expected_grow_at){
+	if (map.grow_at == expected_grow_at) {
 		return 1;
 	}
 	return 0;
 }
 
-
-int hashmap_add_testAdd1Element(){
+int hashmap_add_AddElement(int n)
+{
 	struct hashmap map;
-	unsigned int size = 6;
-	hashmap_init(&map,NULL,NULL,0);
-	
-	struct hashmap_entry e1;
-	hashmap_add(&map,&e1);
-	int old_size =  map.private_size;	
-	
-	hashmap_add(&map,&e1);
-	int new_size = map.private_size;
+	hashmap_init(&map, NULL, NULL, 0);
 
-	if(new_size == old_size+1){
-		return 1;
+	int old_size = map.private_size;
+
+	for (int i = 0; i < n; i++) {
+		struct hashmap_entry e;
+		hashmap_add(&map, &e);
 	}
-	return 0;
-}
 
-int hashmap_add_testAdd2Element(){
-	struct hashmap map;
-	unsigned int size = 6;
-	hashmap_init(&map,NULL,NULL,0);
-	
-	struct hashmap_entry e1;
-	struct hashmap_entry e2;
-	hashmap_add(&map,&e1);
-	hashmap_add(&map,&e2);
-	int old_size =  map.private_size;	
-	
-	hashmap_add(&map,&e1);
 	int new_size = map.private_size;
-	
-	if(new_size == old_size+1){
+
+	if (new_size == old_size + n) {
 		return 1;
 	}
 	return 0;
@@ -184,7 +167,6 @@ int main(void)
 	ok(strhash_testHashValue_string(), "strhash with string argument");
 	ok(strhash_testHashValue_emptyString(),
 	   "strhash with empty string argument");
-
 	ok(strihash_testHashValue_string(), "strihash with string");
 	ok(strihash_testHashValue_emptyString(), "strihash with empty string");
 
@@ -199,10 +181,12 @@ int main(void)
 	ok(memihash_cont_testHashValue_emptyString(),
 	   "memihash_cont with empty string");
 
-	ok(allocate_table_testTableSize(), "allocated a new hashmap and test table size");
-	ok(allocate_table_testTableSize(), "allocated a new hashmap and test grow at");
+	ok(allocate_table_testTableSize(),
+	   "allocated a new hashmap and test table size");
+	ok(allocate_table_testTableSize(),
+	   "allocated a new hashmap and test grow at");
 
-	ok(hashmap_add_testAdd1Element(), "added 1 new element to hashmap");
-	ok(hashmap_add_testAdd2Element(), "added 2 new element to hashmap");
+	ok(hashmap_add_AddElement(1), "added 1 new element to hashmap");
+	ok(hashmap_add_AddElement(2), "added 2 new element to hashmap");
 	return 0;
 }

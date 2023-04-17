@@ -2,7 +2,7 @@
 #include <../hashmap.h>
 #include <../hashmap.c>
 
-int strhash_testHashValue_string()
+int strhash_HashValue_string()
 {
 	const char *str = "foobar";
 	unsigned int hash_value = strhash(str);
@@ -13,7 +13,7 @@ int strhash_testHashValue_string()
 	return 0;
 }
 
-int strhash_testHashValue_emptyString()
+int strhash_HashValue_emptyString()
 {
 	const char *str = "";
 	unsigned int hash_value = strhash(str);
@@ -24,7 +24,7 @@ int strhash_testHashValue_emptyString()
 	return 0;
 }
 
-int strihash_testHashValue_string()
+int strihash_HashValue_string()
 {
 	const char *str = "foobar";
 	unsigned int hash_value = strihash(str);
@@ -36,7 +36,7 @@ int strihash_testHashValue_string()
 	return 0;
 }
 
-int strihash_testHashValue_emptyString()
+int strihash_HashValue_emptyString()
 {
 	const char *str = "";
 	unsigned int hash_value = strihash(str);
@@ -47,7 +47,7 @@ int strihash_testHashValue_emptyString()
 	return 0;
 }
 
-int memhash_testHashValue_string()
+int memhash_HashValue_string()
 {
 	const char *str = "foobar";
 	unsigned int hash_value = memhash(str, 6);
@@ -59,7 +59,7 @@ int memhash_testHashValue_string()
 	return 0;
 }
 
-int memhash_testHashValue_emptyString()
+int memhash_HashValue_emptyString()
 {
 	const char *str = "";
 	unsigned int hash_value = memhash(str, 0);
@@ -70,7 +70,7 @@ int memhash_testHashValue_emptyString()
 	return 0;
 }
 
-int memihash_testHashValue_string()
+int memihash_HashValue_string()
 {
 	const char *str = "foobar";
 	unsigned int hash_value = memihash(str, 6);
@@ -81,7 +81,7 @@ int memihash_testHashValue_string()
 	return 0;
 }
 
-int memihash_testHashValue_emptyString()
+int memihash_HashValue_emptyString()
 {
 	const char *str = "";
 	unsigned int hash_value = memihash(str, 0);
@@ -92,7 +92,7 @@ int memihash_testHashValue_emptyString()
 	return 0;
 }
 
-int memihash_cont_testHashValue_string()
+int memihash_cont_HashValue_string()
 {
 	const char *str = "foobar";
 	int hash_seed = 1234;
@@ -104,7 +104,7 @@ int memihash_cont_testHashValue_string()
 	return 0;
 }
 
-int memihash_cont_testHashValue_emptyString()
+int memihash_cont_HashValue_emptyString()
 {
 	const char *str = "";
 	int hash_seed = 1234;
@@ -116,7 +116,7 @@ int memihash_cont_testHashValue_emptyString()
 	return 0;
 }
 
-int allocate_table_testTableSize()
+int allocate_table_TableSize()
 {
 	struct hashmap map;
 	unsigned int size = 6;
@@ -128,7 +128,7 @@ int allocate_table_testTableSize()
 	return 0;
 }
 
-int allocate_table_testGrowAt()
+int allocate_table_GrowAt()
 {
 	struct hashmap map;
 	unsigned int size = 6;
@@ -164,26 +164,26 @@ int main(void)
 {
 	plan(14);
 
-	ok(strhash_testHashValue_string(), "strhash with string argument");
-	ok(strhash_testHashValue_emptyString(),
+	ok(strhash_HashValue_string(), "strhash with string argument");
+	ok(strhash_HashValue_emptyString(),
 	   "strhash with empty string argument");
-	ok(strihash_testHashValue_string(), "strihash with string");
-	ok(strihash_testHashValue_emptyString(), "strihash with empty string");
+	ok(strihash_HashValue_string(), "strihash with string");
+	ok(strihash_HashValue_emptyString(), "strihash with empty string");
 
-	ok(memhash_testHashValue_string(), "memhash with string works");
-	ok(memhash_testHashValue_emptyString(), "memhash with empty string");
+	ok(memhash_HashValue_string(), "memhash with string works");
+	ok(memhash_HashValue_emptyString(), "memhash with empty string");
 
-	ok(memihash_testHashValue_string(), "memihash with string");
-	ok(memihash_testHashValue_emptyString(), "memihash with empty string");
+	ok(memihash_HashValue_string(), "memihash with string");
+	ok(memihash_HashValue_emptyString(), "memihash with empty string");
 
-	ok(memihash_cont_testHashValue_string(), "memihash_cont with string");
+	ok(memihash_cont_HashValue_string(), "memihash_cont with string");
 
-	ok(memihash_cont_testHashValue_emptyString(),
+	ok(memihash_cont_HashValue_emptyString(),
 	   "memihash_cont with empty string");
 
-	ok(allocate_table_testTableSize(),
+	ok(allocate_table_TableSize(),
 	   "allocated a new hashmap and test table size");
-	ok(allocate_table_testTableSize(),
+	ok(allocate_table_GrowAt(),
 	   "allocated a new hashmap and test grow at");
 
 	ok(hashmap_add_AddElement(1), "added 1 new element to hashmap");

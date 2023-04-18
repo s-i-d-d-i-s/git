@@ -2,6 +2,13 @@
 #include <../hashmap.h>
 #include <../hashmap.c>
 
+struct hashmap get_hashmap(int n)
+{
+	struct hashmap map;
+	hashmap_init(&map, NULL, NULL, n);
+	return map;
+}
+
 int strhash_HashValue_string()
 {
 	const char *str = "foobar";
@@ -142,8 +149,7 @@ int allocate_table_GrowAt()
 
 int hashmap_add_AddElement(int n)
 {
-	struct hashmap map;
-	hashmap_init(&map, NULL, NULL, 0);
+	struct hashmap map = get_hashmap(0);
 
 	int old_size = map.private_size;
 
@@ -178,8 +184,7 @@ int rehash_RehashWithSize(int n)
 
 int hashmap_Initialization(int n)
 {
-	struct hashmap map;
-	hashmap_init(&map, NULL, NULL, n);
+	struct hashmap map = get_hashmap(n);
 
 	if (map.tablesize == (1 << (n + 1))) {
 		return 1;
@@ -189,8 +194,7 @@ int hashmap_Initialization(int n)
 
 int hashmap_remove_RemoveElementWhichExist(int hash_value)
 {
-	struct hashmap map;
-	hashmap_init(&map, NULL, NULL, 0);
+	struct hashmap map = get_hashmap(0);
 
 	struct hashmap_entry e1;
 	e1.hash = hash_value;
@@ -204,9 +208,9 @@ int hashmap_remove_RemoveElementWhichExist(int hash_value)
 	return 0;
 }
 
-int hashmap_remove_RemoveElementWhichDoesNotExist(int hash_value){
-	struct hashmap map;
-	hashmap_init(&map, NULL, NULL, 0);
+int hashmap_remove_RemoveElementWhichDoesNotExist(int hash_value)
+{
+	struct hashmap map = get_hashmap(0);
 
 	struct hashmap_entry e1;
 	e1.hash = hash_value;
@@ -219,31 +223,31 @@ int hashmap_remove_RemoveElementWhichDoesNotExist(int hash_value){
 	return 0;
 }
 
-int hashmap_put_PutElementWhichDoesNotExist(int hash_value){
-	struct hashmap map;
-	hashmap_init(&map, NULL, NULL, 0);
+int hashmap_put_PutElementWhichDoesNotExist(int hash_value)
+{
+	struct hashmap map = get_hashmap(0);
 
 	struct hashmap_entry e1;
 	e1.hash = hash_value;
 
-	struct hashmap_entry * e2 = hashmap_put(&map,&e1);
-	if(e2 == NULL){
+	struct hashmap_entry *e2 = hashmap_put(&map, &e1);
+	if (e2 == NULL) {
 		return 1;
 	}
 	return 0;
 }
 
-int hashmap_put_PutElementWhichExist(int hash_value){
-	struct hashmap map;
-	hashmap_init(&map, NULL, NULL, 0);
+int hashmap_put_PutElementWhichExist(int hash_value)
+{
+	struct hashmap map = get_hashmap(0);
 
 	struct hashmap_entry e1;
 	e1.hash = hash_value;
 
-	hashmap_add(&map,&e1);
+	hashmap_add(&map, &e1);
 
-	struct hashmap_entry * e2 = hashmap_put(&map,&e1);
-	if(e2->hash == hash_value){
+	struct hashmap_entry *e2 = hashmap_put(&map, &e1);
+	if (e2->hash == hash_value) {
 		return 1;
 	}
 	return 0;
@@ -287,8 +291,9 @@ int main(void)
 	ok(hashmap_remove_RemoveElementWhichDoesNotExist(2),
 	   "Remove element in hashmap which does not exists");
 
-	ok(hashmap_put_PutElementWhichDoesNotExist(2),"Put element which does not exist.");
+	ok(hashmap_put_PutElementWhichDoesNotExist(2),
+	   "Put element which does not exist.");
 
-	ok(hashmap_put_PutElementWhichExist(10),"Put element which exist.");
+	ok(hashmap_put_PutElementWhichExist(10), "Put element which exist.");
 	return 0;
 }

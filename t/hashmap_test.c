@@ -219,10 +219,39 @@ int hashmap_remove_RemoveElementWhichDoesNotExist(int hash_value){
 	return 0;
 }
 
+int hashmap_put_PutElementWhichDoesNotExist(int hash_value){
+	struct hashmap map;
+	hashmap_init(&map, NULL, NULL, 0);
+
+	struct hashmap_entry e1;
+	e1.hash = hash_value;
+
+	struct hashmap_entry * e2 = hashmap_put(&map,&e1);
+	if(e2 == NULL){
+		return 1;
+	}
+	return 0;
+}
+
+int hashmap_put_PutElementWhichExist(int hash_value){
+	struct hashmap map;
+	hashmap_init(&map, NULL, NULL, 0);
+
+	struct hashmap_entry e1;
+	e1.hash = hash_value;
+
+	hashmap_add(&map,&e1);
+
+	struct hashmap_entry * e2 = hashmap_put(&map,&e1);
+	if(e2->hash == hash_value){
+		return 1;
+	}
+	return 0;
+}
 
 int main(void)
 {
-	plan(19);
+	plan(21);
 
 	ok(strhash_HashValue_string(), "strhash with string argument");
 	ok(strhash_HashValue_emptyString(),
@@ -257,5 +286,9 @@ int main(void)
 	   "Remove element in hashmap which exists");
 	ok(hashmap_remove_RemoveElementWhichDoesNotExist(2),
 	   "Remove element in hashmap which does not exists");
+
+	ok(hashmap_put_PutElementWhichDoesNotExist(2),"Put element which does not exist.");
+
+	ok(hashmap_put_PutElementWhichExist(10),"Put element which exist.");
 	return 0;
 }

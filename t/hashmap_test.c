@@ -160,9 +160,69 @@ int hashmap_add_AddElement(int n)
 	return 0;
 }
 
+int rehash_RehashWithSize(int n)
+{
+	struct hashmap map;
+	alloc_table(&map, 1);
+	int old_size = map.tablesize;
+
+	rehash(&map, n);
+
+	int new_size = map.tablesize;
+
+	if (new_size == n) {
+		return 1;
+	}
+	return 0;
+}
+
+int hashmap_Initialization(int n)
+{
+	struct hashmap map;
+	hashmap_init(&map, NULL, NULL, n);
+
+	if (map.tablesize == (1 << (n + 1))) {
+		return 1;
+	}
+	return 0;
+}
+
+int hashmap_remove_RemoveElementWhichExist(int hash_value)
+{
+	struct hashmap map;
+	hashmap_init(&map, NULL, NULL, 0);
+
+	struct hashmap_entry e1;
+	e1.hash = hash_value;
+	hashmap_add(&map, &e1);
+
+	struct hashmap_entry *removed = hashmap_remove(&map, &e1, NULL);
+
+	if (removed->hash == hash_value) {
+		return 1;
+	}
+	return 0;
+}
+
+int hashmap_remove_RemoveElementWhichDoesNotExist(int hash_value){
+	struct hashmap map;
+	hashmap_init(&map, NULL, NULL, 0);
+
+	struct hashmap_entry e1;
+	e1.hash = hash_value;
+
+	struct hashmap_entry *removed = hashmap_remove(&map, &e1, NULL);
+
+	if (removed == NULL) {
+		return 1;
+	}
+	return 0;
+}
+
+
 int main(void)
 {
-	plan(14);
+	plan(19);
 
 	ok(strhash_HashValue_string(), "strhash with string argument");
 	ok(strhash_HashValue_emptyString(),
@@ -183,10 +243,19 @@ int main(void)
 
 	ok(allocate_table_TableSize(),
 	   "allocated a new hashmap and test table size");
-	ok(allocate_table_GrowAt(),
-	   "allocated a new hashmap and test grow at");
+	ok(allocate_table_GrowAt(), "allocated a new hashmap and test grow at");
 
 	ok(hashmap_add_AddElement(1), "added 1 new element to hashmap");
 	ok(hashmap_add_AddElement(2), "added 2 new element to hashmap");
+
+	ok(rehash_RehashWithSize(5), "rehash to get size: 5");
+	ok(rehash_RehashWithSize(10), "rehash to get size: 10");
+
+	ok(hashmap_Initialization(5), "initialize a hashmap");
+
+	ok(hashmap_remove_RemoveElementWhichExist(2),
+	   "Remove element in hashmap which exists");
+	ok(hashmap_remove_RemoveElementWhichDoesNotExist(2),
+	   "Remove element in hashmap which does not exists");
 	return 0;
 }

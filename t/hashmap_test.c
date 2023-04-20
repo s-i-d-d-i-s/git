@@ -253,8 +253,8 @@ int hashmap_put_PutElementWhichExist(int hash_value)
 	return 0;
 }
 
-
-int entry_equals_EqualEntry(){
+int entry_equals_EqualEntry()
+{
 	struct hashmap map = get_hashmap(0);
 
 	struct hashmap_entry e1;
@@ -263,14 +263,15 @@ int entry_equals_EqualEntry(){
 	struct hashmap_entry e2;
 	e2.hash = 1;
 
-	int result = entry_equals(&map,&e1,&e2,NULL);
-	if(result == 1){
+	int result = entry_equals(&map, &e1, &e2, NULL);
+	if (result == 1) {
 		return 1;
 	}
 	return 0;
 }
 
-int entry_equals_UnequalEntry(){
+int entry_equals_UnequalEntry()
+{
 	struct hashmap map = get_hashmap(0);
 
 	struct hashmap_entry e1;
@@ -279,144 +280,149 @@ int entry_equals_UnequalEntry(){
 	struct hashmap_entry e2;
 	e2.hash = 2;
 
-	int result = entry_equals(&map,&e1,&e2,NULL);
-	if(result == 0){
+	int result = entry_equals(&map, &e1, &e2, NULL);
+	if (result == 0) {
 		return 1;
 	}
 	return 0;
 }
 
-int entry_equals_SameEntry(){
+int entry_equals_SameEntry()
+{
 	struct hashmap map = get_hashmap(0);
 
 	struct hashmap_entry e1;
 	e1.hash = 1;
 
-	int result = entry_equals(&map,&e1,&e1,NULL);
-	if(result == 1){
+	int result = entry_equals(&map, &e1, &e1, NULL);
+	if (result == 1) {
 		return 1;
 	}
 	return 0;
 }
 
-int bucket_Value(){
+int bucket_Value()
+{
 	struct hashmap map = get_hashmap(0);
 
 	struct hashmap_entry e1;
 	e1.hash = 1234;
 
-	int bucket_value = bucket(&map,&e1);
+	int bucket_value = bucket(&map, &e1);
 	int expected_bucket_value = 18;
-	if(bucket_value == expected_bucket_value){
+	if (bucket_value == expected_bucket_value) {
 		return 1;
 	}
 	return 0;
 }
 
-int find_entry_ptr_FindPtr(){
+int find_entry_ptr_FindPtr()
+{
 	struct hashmap map = get_hashmap(0);
 
 	struct hashmap_entry e1;
 	e1.hash = 1234;
-	hashmap_add(&map,&e1);
-	struct hashmap_entry ** result_ptr = find_entry_ptr(&map,&e1,NULL);
-	if(*result_ptr == &e1){
+	hashmap_add(&map, &e1);
+	struct hashmap_entry **result_ptr = find_entry_ptr(&map, &e1, NULL);
+	if (*result_ptr == &e1) {
 		return 1;
 	}
 	return 0;
 }
 
-int hashmap_iter_next_NextEntry(){
+int hashmap_iter_next_NextEntry()
+{
 	struct hashmap map = get_hashmap(0);
 
 	struct hashmap_entry e1;
 	e1.hash = 1;
 	struct hashmap_entry e2;
-	e2.hash = 2;	
-	hashmap_add(&map,&e1);
-	hashmap_add(&map,&e2);
+	e2.hash = 2;
+	hashmap_add(&map, &e1);
+	hashmap_add(&map, &e2);
 	struct hashmap_iter iter;
-	
+
 	hashmap_iter_init(&map, &iter);
 	struct hashmap_entry *e;
 	e = hashmap_iter_next(&iter);
-	if(e->hash != 1){
+	if (e->hash != 1) {
 		return 0;
 	}
 	e = hashmap_iter_next(&iter);
-	if(e->hash != 2){
+	if (e->hash != 2) {
 		return 0;
 	}
 	return 1;
 }
 
-int hashmap_partial_clear_PartialClear(int total){
-
+int hashmap_partial_clear_PartialClear(int total)
+{
 	struct hashmap map = get_hashmap(0);
-	for(int i=0;i<total;i++){
+	for (int i = 0; i < total; i++) {
 		struct hashmap_entry e;
-		e.hash = i+1;
-		hashmap_add(&map,&e);
+		e.hash = i + 1;
+		hashmap_add(&map, &e);
 	}
-	hashmap_partial_clear_(&map,-1);
+	hashmap_partial_clear_(&map, -1);
 
-	if(map.table && map.tablesize == 64 && map.private_size == 0){
+	if (map.table && map.tablesize == 64 && map.private_size == 0) {
 		return 1;
 	}
 	return 0;
 }
 
-int hashmap_clear_Clear(int total){
-
+int hashmap_clear_Clear(int total)
+{
 	struct hashmap map = get_hashmap(0);
-	for(int i=0;i<total;i++){
+	for (int i = 0; i < total; i++) {
 		struct hashmap_entry e;
-		e.hash = i+1;
-		hashmap_add(&map,&e);
+		e.hash = i + 1;
+		hashmap_add(&map, &e);
 	}
-	hashmap_clear_(&map,-1);
+	hashmap_clear_(&map, -1);
 
-	if(map.table == NULL){
+	if (map.table == NULL) {
 		return 1;
 	}
 	return 0;
 }
 
-int hashmap_get_GetEntry(){
+int hashmap_get_GetEntry()
+{
 	struct hashmap map = get_hashmap(0);
 
 	struct hashmap_entry e1;
 	e1.hash = 1234;
-	hashmap_add(&map,&e1);
-	struct hashmap_entry * result = hashmap_get(&map,&e1,NULL);
-	if(result == &e1){
+	hashmap_add(&map, &e1);
+	struct hashmap_entry *result = hashmap_get(&map, &e1, NULL);
+	if (result == &e1) {
 		return 1;
 	}
 	return 0;
 }
 
-int hashmap_get_next_GetNext(){
+int hashmap_get_next_GetNext()
+{
 	struct hashmap map = get_hashmap(0);
-	
+
 	struct hashmap_entry e1;
 	e1.hash = 1;
-	hashmap_add(&map,&e1);
+	hashmap_add(&map, &e1);
 
 	struct hashmap_entry e2;
 	e2.hash = 1;
-	hashmap_add(&map,&e2);
+	hashmap_add(&map, &e2);
 
 	struct hashmap_entry e3;
 	e3.hash = 1;
-	hashmap_add(&map,&e3);
+	hashmap_add(&map, &e3);
 
-	struct hashmap_entry * result = hashmap_get_next(&map,&e3);
-	if(result == &e2){
+	struct hashmap_entry *result = hashmap_get_next(&map, &e3);
+	if (result == &e2) {
 		return 1;
 	}
 	return 0;
 }
-
 
 int main(void)
 {
@@ -461,18 +467,18 @@ int main(void)
 
 	ok(hashmap_put_PutElementWhichExist(10), "Put element which exist.");
 
-	ok(entry_equals_EqualEntry(),"Check for equal hashmap entry");
-	ok(entry_equals_UnequalEntry(),"Check for unequal hashmap entry");
-	ok(entry_equals_SameEntry(),"Check for same hashmap entry");
+	ok(entry_equals_EqualEntry(), "Check for equal hashmap entry");
+	ok(entry_equals_UnequalEntry(), "Check for unequal hashmap entry");
+	ok(entry_equals_SameEntry(), "Check for same hashmap entry");
 
-	ok(bucket_Value(),"Check for bucket value");
+	ok(bucket_Value(), "Check for bucket value");
 
 	ok(find_entry_ptr_FindPtr(), "Find ptr of a hashmap entry");
 
-	ok(hashmap_iter_next_NextEntry(),"Iterate over hashmap");
-	ok(hashmap_partial_clear_PartialClear(10),"Perform partial clear");
-	ok(hashmap_clear_Clear(10),"Perform Clear");
-	ok(hashmap_get_GetEntry(),"Get entry from hashmap");
-	ok(hashmap_get_next_GetNext(),"Get next equal hashmap entry");
+	ok(hashmap_iter_next_NextEntry(), "Iterate over hashmap");
+	ok(hashmap_partial_clear_PartialClear(10), "Perform partial clear");
+	ok(hashmap_clear_Clear(10), "Perform Clear");
+	ok(hashmap_get_GetEntry(), "Get entry from hashmap");
+	ok(hashmap_get_next_GetNext(), "Get next equal hashmap entry");
 	return 0;
 }

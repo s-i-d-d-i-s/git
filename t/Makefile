@@ -17,6 +17,7 @@ TAR ?= $(TAR)
 RM ?= rm -f
 PROVE ?= prove
 DEFAULT_TEST_TARGET ?= test
+DEFAULT_UNIT_TEST_TARGET ?= run-unit-tests
 TEST_LINT ?= test-lint
 
 ifdef TEST_OUTPUT_DIRECTORY
@@ -41,6 +42,7 @@ TPERF = $(sort $(wildcard perf/p[0-9][0-9][0-9][0-9]-*.sh))
 TINTEROP = $(sort $(wildcard interop/i[0-9][0-9][0-9][0-9]-*.sh))
 CHAINLINTTESTS = $(sort $(patsubst chainlint/%.test,%,$(wildcard chainlint/*.test)))
 CHAINLINT = '$(PERL_PATH_SQ)' chainlint.pl
+UNIT_TESTS = $(sort $(wildcard unit-tests/*))
 
 # `test-chainlint` (which is a dependency of `test-lint`, `test` and `prove`)
 # checks all tests in all scripts via a single invocation, so tell individual
@@ -64,6 +66,14 @@ prove: pre-clean check-chainlint $(TEST_LINT)
 
 $(T):
 	@echo "*** $@ ***"; '$(TEST_SHELL_PATH_SQ)' $@ $(GIT_TEST_OPTS)
+
+unit-tests: $(DEFAULT_UNIT_TEST_TARGET)
+
+run-unit-tests:
+	./runtests $(UNIT_TESTS)
+
+prove-unit-tests:
+	@echo "*** prove - unit tests ***"; $(PROVE) $(GIT_PROVE_OPTS) $(UNIT_TESTS)
 
 pre-clean:
 	$(RM) -r '$(TEST_RESULTS_DIRECTORY_SQ)'

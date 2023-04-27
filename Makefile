@@ -3650,10 +3650,10 @@ clean: profile-clean coverage-clean cocciclean
 	$(RM) -r .build
 	$(RM) po/git.pot po/git-core.pot
 	$(RM) git.res
-	$(RM) $(OBJECTS)
+	$(RM) $(OBJECTS) basic.o
 	$(RM) $(LIB_FILE) $(XDIFF_LIB) $(REFTABLE_LIB) $(REFTABLE_TEST_LIB)
 	$(RM) $(ALL_PROGRAMS) $(SCRIPT_LIB) $(BUILT_INS) $(OTHER_PROGRAMS)
-	$(RM) $(TEST_PROGRAMS)
+	$(RM) $(TEST_PROGRAMS) t/unit-tests/* t/runtests
 	$(RM) $(FUZZ_PROGRAMS)
 	$(RM) $(SP_OBJ)
 	$(RM) $(HCC)
@@ -3831,3 +3831,26 @@ $(FUZZ_PROGRAMS): all
 		$(XDIFF_OBJS) $(EXTLIBS) git.o $@.o $(LIB_FUZZING_ENGINE) -o $@
 
 fuzz-all: $(FUZZ_PROGRAMS)
+
+CTAP_SRCS += t/tap/basic.c
+CTAP_SRCS += t/tap/basic.h
+CTAP_SRCS += t/tap/macros.h
+
+CTAP_OBJS += basic.o
+
+$(CTAP_OBJS): $(CTAP_SRCS)
+	$(QUIET_CC)$(CC) -It -c $^
+
+UNIT_TEST_RUNNER = t/runtests
+$(UNIT_TEST_RUNNER): t/runtests.c
+	$(QUIET_CC)$(CC) -o $@ $^
+
+UNIT_TEST_PROGS += t/unit-tests/unit-test-t
+
+$(UNIT_TEST_PROGS): $(CTAP_OBJS) $(LIBS)
+	$(QUIET)mkdir -p t/unit-tests
+	$(QUIET_CC)$(CC) -It -o t/unit-tests/unit-test-t t/unit-test.c $(CTAP_OBJS)
+
+.PHONY: unit-tests
+unit-tests: $(UNIT_TEST_PROGS) $(UNIT_TEST_RUNNER)
+	$(MAKE) -C t/ unit-tests

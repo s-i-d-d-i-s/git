@@ -1,0 +1,19 @@
+Justification goes here
+
+How to carry local patches against C-TAP? Just vendor the code in (current approach)?
+Or use submodule? But then we have to choose where to host the submod with our patches on top.
+
+How to use prove (or other runner)?
+
+Eventually, run along with regular `make test` target?
+
+Do we want to be able to test without a full `make all` ? Requires more detailed dependency tracking in the makefile
+
+Roadmap / milestones go here:
+* Proof-of-concept runnable as `make unittests`
+* Integration with CI
+* Useful tests of gitlib stuff
+
+* Integration with stdlib work
+
+* ???

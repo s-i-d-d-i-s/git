@@ -26,6 +26,8 @@ static void restore_sigpipe_to_default(void)
 	signal(SIGPIPE, SIG_DFL);
 }
 
+
+#ifndef SKIP_COMMON_MAIN
 int main(int argc, const char **argv)
 {
 	int result;
@@ -62,6 +64,7 @@ int main(int argc, const char **argv)
 	/* Not exit(3), but a wrapper calling our common_exit() */
 	exit(result);
 }
+#endif /* SKIP_COMMON_MAIN */
 
 static void check_bug_if_BUG(void)
 {

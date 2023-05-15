@@ -3880,5 +3880,6 @@ tap:
 	cc -c $(GIT_STD_LIB_OBJS1) -DNO_STRLCPY -DGIT_STD_LIB
 	ar -rc gitstdlib.a $(GIT_STD_LIB_OBJS)
 	cc -It -o t/strbuf/strbuf-t t/strbuf_test.c -L. $(tests_tap_libraries)
+	cc -It -o t/khash/khash-t t/khash_test.c -L. $(tests_tap_libraries) 
 	cc -o t/runtests t/runtests.c
 	cd t && ./runtests -l TESTS

@@ -3852,6 +3852,7 @@ $(UNIT_TEST_PROGS): $(CTAP_OBJS) $(LIBS)
 	$(QUIET)mkdir -p t/unit-tests
 	$(QUIET_CC)$(CC) -It -o t/unit-tests/unit-test-t t/unit-test.c $(CTAP_OBJS)
 	$(QUIET_CC)$(CC) -It -o t/unit-tests/strbuf-t t/strbuf-test.c -DSKIP_COMMON_MAIN common-main.c $(CTAP_OBJS) $(LIBS)
+	$(QUIET_CC)$(CC) -It -o t/unit-tests/khash-t t/khash_test.c -DSKIP_COMMON_MAIN common-main.c $(CTAP_OBJS) $(LIBS)
 
 .PHONY: unit-tests
 unit-tests: $(UNIT_TEST_PROGS) $(UNIT_TEST_RUNNER)
